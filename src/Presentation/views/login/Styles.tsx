@@ -49,10 +49,20 @@ const LoginStyles = StyleSheet.create({
         fontSize: 16
     },
 
-    fontIcon: {
-        width: 25,
-        height: 25,
-        marginTop: 5
+
+    formRegister: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 30
+    },
+
+    formTextRegister: {
+        fontStyle: 'italic',
+        color: 'orange',
+        borderBottomWidth: 1,
+        borderBottomColor: 'orange',
+        fontWeight: 'bold',
+        marginLeft: 10
     }
 });
 

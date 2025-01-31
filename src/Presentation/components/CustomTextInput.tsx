@@ -1,23 +1,57 @@
-import { View, Text, KeyboardType } from 'react-native'
-import React from 'react'
+import { View, Text, KeyboardType, StyleSheet, Image } from "react-native";
+import React from "react";
+import { TextInput } from "react-native-gesture-handler";
 
 interface Props {
-    image: any,
-    placeholder: string,
-    value: string,
-    keyboardtype: KeyboardType,
-    secureTextEntry?: boolean,
-    property: string,
-    onChangeText: (property: string, value: any) => void
-
+  image: any;
+  placeholder: string;
+  value: string;
+  keyboardtype: KeyboardType;
+  secureTextEntry?: boolean;
+  property: string;
+  onChangeText: (property: string, value: any) => void;
 }
 
 export default function CustomTextInput({
-
-}:Props){
+  image,
+  placeholder,
+  value,
+  keyboardtype,
+  secureTextEntry,
+  property,
+  onChangeText,
+}: Props) {
   return (
-    <View>
-      <Text>CustomTextInput</Text>
+    <View style={styles.formInput}>
+      <Image style={styles.formIcon} source={image} />
+      <TextInput
+        style={styles.formTextInput}
+        placeholder={placeholder}
+        value={value}
+        keyboardType={keyboardtype}
+        secureTextEntry={secureTextEntry}
+        onChangeText={(text) => onChangeText(property, text)}
+      />
     </View>
-  )
+  );
 }
+
+const styles = StyleSheet.create({
+  formIcon: {
+    width: 25,
+    height: 25,
+    marginTop: 5,
+  },
+
+  formInput: {
+    flexDirection: "row",
+    marginTop: 25,
+  },
+
+  formTextInput: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: "#AAAAAA",
+    marginLeft: 16,
+  },
+});
