@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LoginAuthUseCaseLocal } from "../../../Domain/useCase/auth/LoginAuth";
 import { SaveUserLocalUseCase } from "../../../Domain/useCase/userLocal/SaveUserLocal";
-import { useUserLocal } from "../../hooks/useUserLocal";
+import { UserContext } from "../../context/UserContext";
 
 
 export default function LoginViewModel() {
@@ -11,9 +11,8 @@ export default function LoginViewModel() {
     password: "",
   });
 
-  const { user, getUserSession } = useUserLocal();
+ const{user, saveUserSesion} = useContext(UserContext);
   console.log('USUARIO DE SESION: ' + JSON.stringify(user));
-
 
   const onChange = (property: string, value: any) => {
     setValues({ ...values, [property]: value });
@@ -25,14 +24,15 @@ export default function LoginViewModel() {
         values.email,
         values.password
       );
-      console.log("RESPONSE: " + JSON.stringify(response));
+      console.log("RESPONSE LOGIN: " + JSON.stringify(response));
 
       if(!response.success){
         setErrorMessage(response.message);
 
       }else {
-        await SaveUserLocalUseCase(response.data);
-        getUserSession();
+        saveUserSesion(response.data);
+        getSelection();
+        
       }
     }
   };

@@ -13,12 +13,12 @@ import styles from "./Styles";
 import CustomTextInput from "../../components/CustomTextInput";
 import RoundedButton from "../../components/RoundedButton";
 import { ModalPickImage } from "../../components/ModalPickImage";
-import { MyColors } from "../../theme/AppTheme";
+import { MyColors, MyStyles } from "../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../../../../App";
+import { StackParamList } from "../../navigator/MainStackNavigator";
 
 type RegisterScreenProps = {
-  navigation: NativeStackNavigationProp<StackParamList, 'Register'>;
+  navigation: NativeStackNavigationProp<StackParamList, 'RegisterScreen'>;
 };
 
 export default function RegisterScreen({navigation}: RegisterScreenProps ) {
@@ -46,7 +46,7 @@ export default function RegisterScreen({navigation}: RegisterScreenProps ) {
   
       if(user?.id !== null && user?.id != undefined){
   
-        navigation.replace('Profile');
+        navigation.replace('ClientTabsNavigator');
   
       }
   
@@ -158,7 +158,7 @@ export default function RegisterScreen({navigation}: RegisterScreenProps ) {
 
       {loading && (
         <ActivityIndicator
-          style={styles.loading}
+          style={MyStyles.loading}
           size="large"
           color={MyColors.primary}
         />

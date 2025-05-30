@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const registerStyles = StyleSheet.create({
+const ProfileUpdateStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
@@ -36,7 +36,7 @@ const registerStyles = StyleSheet.create({
 
   form: {
     width: "100%",
-    height: "70%",
+    height: "50%",
     backgroundColor: "white",
     position: "absolute",
     bottom: 0,
@@ -65,13 +65,6 @@ const registerStyles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  loading: {
-    position: 'absolute',
-    bottom: 0,
-    top: 0,
-    right: 0,
-    left: 0,
-  }
 });
 
-export default registerStyles;
+export default ProfileUpdateStyles;

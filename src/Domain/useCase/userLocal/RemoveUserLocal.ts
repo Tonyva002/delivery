@@ -4,6 +4,6 @@ import { User } from "../../entities/User";
 
 const { remove } = new UserLocalRepositoryImpl();
 
-export const RomoveUserLocalUseCase = async () => {
+export const RemoveUserLocalUseCase = async () => {
         return await remove();
 }

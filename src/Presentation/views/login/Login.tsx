@@ -5,10 +5,11 @@ import useViewModel from "./ViewModel";
 import CustomTextInput from "../../components/CustomTextInput";
 import RoundedButton from "../../components/RoundedButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../../../../App";
+import { StackParamList } from "../../navigator/MainStackNavigator";
+
 
 type LoginScreenProps = {
-  navigation: NativeStackNavigationProp<StackParamList, 'Login'>;
+  navigation: NativeStackNavigationProp<StackParamList, 'LoginScreen'>;
 };
 
 export default function LoginScreen({ navigation }: LoginScreenProps) {
@@ -17,9 +18,13 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
   useEffect(() => {
 
-    if(user?.id !== null && user?.id != undefined){
+    if(user?.id !== null && user?.id != undefined && user?.id !== ''){
+      if(user.roles?.length! > 1) {
+        navigation.replace('RolesScreen');
+      }else {
+        navigation.replace('ClientTabsNavigator');
 
-      navigation.replace('Profile');
+      } 
 
     }
 
@@ -77,7 +82,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
         <View style={styles.formRegister}>
           <Text>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <TouchableOpacity onPress={() => navigation.navigate("RegisterScreen")}>
             <Text style={styles.formTextRegister}>Register</Text>
           </TouchableOpacity>
         </View>

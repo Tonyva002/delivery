@@ -1,13 +1,14 @@
 
 import {  ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
-import { RegisterAuthUserCase } from '../../../Domain/useCase/auth/RegisterAuth';
 import { useUserLocal } from '../../hooks/useUserLocal';
 import * as ImagePicker from 'expo-image-picker';
 import { RegisterWithImageAuthUserCase } from '../../../Domain/useCase/auth/RegisterWithImage';
 import { SaveUserLocalUseCase } from '../../../Domain/useCase/userLocal/SaveUserLocal';
+import { pickImage as pickImageUtil } from '../../../utils/pickImage';
+import { takePhoto as takePhotoUtil } from '../../../utils/takePhoto';
 
-export default function ViewModel() {
+export default function RegisterViewModel() {
 
 const [errorMessage, setErrorMessage] = useState('');
 const [values, setValues] = useState({
@@ -24,59 +25,19 @@ const [loading, setloading] = useState(false);
 const [file, setfile] = useState<ImagePicker.ImagePickerAsset>();
 const { user, getUserSession } = useUserLocal();
 
-const pickImage = async () => {
-  try {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (status !== 'granted') {
-      alert('Se requieren permisos para acceder a la galeria');
-      return;
-    }
-
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1,
-      selectionLimit: 1,
-    });
-
-    if (!result.canceled && result.assets.length > 0){
-      onChange('image', result.assets[0].uri);
-      setfile(result.assets[0]);
-    }
-    
-  } catch (error) {
-    console.error('Error al seleccionar imagen: ', error); 
-  }
-
-};
-
-const takePhoto = async () => {
-  try {
-    const { status } = await ImagePicker.requestCameraPermissionsAsync();
-  if(status !== 'granted' ){
-    alert('Se requieren permisos para acceder a la camara')
-    return;
-  }
-
-  let result = await ImagePicker.launchCameraAsync({
-    allowsEditing: true,
-    quality: 1,
-    selectionLimit: 1
-  });
-
-  if(!result.canceled && result.assets.length > 0) {
-    onChange('image', result.assets[0].uri);
-    setfile(result.assets[0]);
-  }
-    
-  } catch (error) {
-    console.error('Error al tomar foto', error);
-    
-  }
-};
-
 const onChange = (property: string, value: any) => {
   setValues({...values, [property]: value})
 }
+
+const pickImage = async () => {
+    await pickImageUtil({ onChange, setFile: setfile });
+  };
+
+  const takePhoto = async () => {
+  await takePhotoUtil({ onChange, setFile: setfile });
+};
+
+
 
 const register = async () => {
   if(isValidForm()) {
@@ -151,7 +112,8 @@ const isValidForm = (): boolean => {
     register,
     pickImage,
     takePhoto,
-    setErrorMessage
+    setErrorMessage,
+    
     
   }
 }
