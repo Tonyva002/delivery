@@ -14,13 +14,13 @@ const ProfileInfoStyles = StyleSheet.create({
     bottom: "30%",
   },
 
-  logoContainer: {
+  imageContainer: {
     position: "absolute",
     alignSelf: "center",
     top: "14%",
   },
 
-  logoImage: {
+  image: {
     width: 180,
     height: 180,
     borderRadius: 100,
@@ -32,7 +32,7 @@ const ProfileInfoStyles = StyleSheet.create({
 
    form: {
         width: '100%',
-        height: '45%',
+        height: '48%',
         backgroundColor:'white',
         position: 'absolute',
         bottom: 0,
@@ -64,7 +64,7 @@ const ProfileInfoStyles = StyleSheet.create({
 
     logout: {
         position: 'absolute',
-        top: 30, 
+        top: 50, 
         right: 15,
         
     },

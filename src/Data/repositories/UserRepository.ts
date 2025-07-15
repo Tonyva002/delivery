@@ -11,24 +11,33 @@ import { handleAxiosError } from "../../utils/handleAxiosError";
 
 export class UserRepositoryImpl implements UserRepository {
 
+
+  async getDelivery(): Promise<User[]> {
+    try {
+      const response = await ApiDelivery.get<User[]>('/users/findByDelivery');
+      return Promise.resolve(response.data);
+      
+    } catch (error) {
+     handleAxiosError(error, "Error al actualizar usuario sin imagen");
+     return Promise.resolve([])
+    }
+      
+    }
+
+
   // Metodo para actualizar usuario sin imagen
   async updateWithoutImage(user: User): Promise<ResponseApiDelivery> {
     try {
-      const response = await ApiDelivery.put<ResponseApiDelivery>(
-        "/users/updateWithoutImage",
-        user
-      );
+      const response = await ApiDelivery.put<ResponseApiDelivery>("/users/updateWithoutImage", user);
       return Promise.resolve(response.data);
+
     } catch (error) {
       return handleAxiosError(error, "Error al actualizar usuario sin imagen");
     }
   }
 
   // Metodo para actualizar usuario con imagen
-  async updateWithImage(
-    user: User,
-    file: ImagePickerAsset
-  ): Promise<ResponseApiDelivery> {
+  async updateWithImage(user: User, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
     try {
       if (!file?.uri) {
         throw new Error("La imagen seleccionada no es válida.");
@@ -46,12 +55,9 @@ export class UserRepositoryImpl implements UserRepository {
 
       formData.append("user", JSON.stringify(user));
 
-      const { data } = await ApiDeliveryForImage.put<ResponseApiDelivery>(
-        "/users/updateWithImage",
-        formData
-      );
-
+      const { data } = await ApiDeliveryForImage.put<ResponseApiDelivery>("/users/updateWithImage", formData);
       return data;
+      
     } catch (error) {
       return handleAxiosError(error, "Error al actualizar usuario con imagen");
     }

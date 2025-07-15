@@ -1,59 +1,76 @@
-import { View, Image, Text, TouchableOpacity, ToastAndroid } from "react-native";
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ToastAndroid,
+  StatusBar,
+} from "react-native";
 import React, { useEffect } from "react";
-import styles from "./Styles";
-import useViewModel from "./ViewModel";
+import LoginStyles from "./Styles";
+import useLoginViewModel from "./ViewModel";
 import CustomTextInput from "../../components/CustomTextInput";
 import RoundedButton from "../../components/RoundedButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../navigator/MainStackNavigator";
-
+import { useFocusEffect } from "@react-navigation/native";
 
 type LoginScreenProps = {
-  navigation: NativeStackNavigationProp<StackParamList, 'LoginScreen'>;
+  navigation: NativeStackNavigationProp<StackParamList, "LoginScreen">;
 };
 
 export default function LoginScreen({ navigation }: LoginScreenProps) {
+  const {
+    email,
+    password,
+    errorMessage,
+    setErrorMessage,
+    login,
+    onChange,
+    user,
+  } = useLoginViewModel();
 
-  const { email, password, errorMessage, setErrorMessage, login, onChange, user } = useViewModel();
+  useFocusEffect(
+    React.useCallback(() => {
+      StatusBar.setBarStyle("light-content");
+      StatusBar.setBackgroundColor("transparent");
+      StatusBar.setTranslucent(true);
+    }, [])
+  );
 
   useEffect(() => {
-
-    if(user?.id !== null && user?.id != undefined && user?.id !== ''){
-      if(user.roles?.length! > 1) {
-        navigation.replace('RolesScreen');
-      }else {
-        navigation.replace('ClientTabsNavigator');
-
-      } 
-
+    if (!user?.id) return;
+    if (user.roles?.length! > 1) {
+      navigation.replace("RolesScreen");
+    } else {
+      navigation.replace("CustomerTabsNavigator");
     }
-
-  },[user])
+  }, [user]);
 
   useEffect(() => {
-    if(errorMessage !== '') {
+    if (errorMessage !== "") {
       ToastAndroid.show(errorMessage, ToastAndroid.LONG);
-      setErrorMessage('')
+      setErrorMessage("");
     }
-  }, [errorMessage])
+  }, [errorMessage]);
 
   return (
-    <View style={styles.container}>
+    <View style={LoginStyles.container}>
       <Image
-        style={styles.imageBackground}
+        style={LoginStyles.imageBackground}
         source={require("../../../../assets/chef.jpg")}
       />
 
-      <View style={styles.logoContainer}>
+      <View style={LoginStyles.logoContainer}>
         <Image
-          style={styles.logoImage}
+          style={LoginStyles.logoImage}
           source={require("../../../../assets/logo.png")}
         />
-        <Text style={styles.logoText}>FOOD</Text>
+        <Text style={LoginStyles.logoText}>FOOD</Text>
       </View>
 
-      <View style={styles.form}>
-        <Text style={styles.formTitle}>LOGIN</Text>
+      <View style={LoginStyles.form}>
+        <Text style={LoginStyles.formTitle}>LOGIN</Text>
 
         <CustomTextInput
           image={require("../../../../assets/email.png")}
@@ -74,16 +91,15 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         />
 
         <View style={{ marginTop: 40 }}>
-          <RoundedButton
-            text="LOGIN"
-            onPress={() => login()}
-          />
+          <RoundedButton text="LOGIN" onPress={() => login()} />
         </View>
 
-        <View style={styles.formRegister}>
+        <View style={LoginStyles.formRegister}>
           <Text>Don't have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("RegisterScreen")}>
-            <Text style={styles.formTextRegister}>Register</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("RegisterScreen")}
+          >
+            <Text style={LoginStyles.formTextRegister}>Register</Text>
           </TouchableOpacity>
         </View>
       </View>

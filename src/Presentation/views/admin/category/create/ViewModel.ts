@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { pickImage as pickImageUtil } from "../../../../../utils/pickImage";
-import { takePhoto as takePhotoUtil } from "../../../../../utils/takePhoto";
+import {pickImageUtil } from "../../../../../utils/pickImageUtil";
+import {takePhotoUtil } from "../../../../../utils/takePhotoUtil";
 import { CategoryContext } from "../../../../context/CategoryContext";
 
-export default function AdminCategoryCreateViewModel() {
+export default function useAdminCategoryCreateViewModel() {
   const [file, setfile] = useState<ImagePicker.ImagePickerAsset>();
 
   const [values, setValues] = useState({

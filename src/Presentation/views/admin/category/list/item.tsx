@@ -4,7 +4,7 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { MyColors } from '../../../../theme/AppTheme';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { CategoryStackParamList } from '../../../../navigator/AdminCategoryNavigator';
+import { CategoryStackParamList } from '../../../../navigator/AdminCategoryStackNavigator';
 
 interface Props {
         category: Category;
@@ -18,7 +18,7 @@ export default function AdminCategoryListItem({category, remove}: Props) {
   
   return (
     <TouchableOpacity
-    onPress={() => navigation.navigate('AdminProductNavigator', {category: category})}
+    onPress={() => navigation.navigate('AdminProductStackNavigator', {category: category})}
     >
    <View style={styles.container}>
 
@@ -34,7 +34,7 @@ export default function AdminCategoryListItem({category, remove}: Props) {
 
     <View style={styles.actionContainer}>
        <TouchableOpacity
-       onPress={() => navigation.navigate('AdminUpdateCategoryScreen', {category: category})}
+       onPress={() => navigation.navigate('AdminCategoryUpdateScreen', {category})}
        >
         <Image 
         style={styles.actionImage}

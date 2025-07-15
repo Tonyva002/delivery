@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, Dimensions } from 'react-native';
-import userViewModel from './ViewModel';
+import { View, Dimensions } from 'react-native';
+import useRolesViewModel from './ViewModel';
 import { useSharedValue } from 'react-native-reanimated';
 import Carousel, { ICarouselInstance, Pagination } from 'react-native-reanimated-carousel';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,7 +14,7 @@ type RolesScreenProps = {
 
 export default function RolesScreen({navigation}: RolesScreenProps) {
   
-  const { user } = userViewModel();
+  const { user } = useRolesViewModel();
   const width = Dimensions.get('window').width;
   const heigth = Dimensions.get('window').height;
 

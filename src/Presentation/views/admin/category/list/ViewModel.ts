@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { CategoryContext } from '../../../../context/CategoryContext';
 
-export default function AdminCategoryListViewModel() {
+export default function useAdminCategoryListViewModel() {
 
         const [responseMessage, setResponseMessage] = useState('');
         const {categories, getCategories, remove} = useContext(CategoryContext);

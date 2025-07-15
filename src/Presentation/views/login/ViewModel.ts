@@ -1,18 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { LoginAuthUseCaseLocal } from "../../../Domain/useCase/auth/LoginAuth";
-import { SaveUserLocalUseCase } from "../../../Domain/useCase/userLocal/SaveUserLocal";
 import { UserContext } from "../../context/UserContext";
 
 
-export default function LoginViewModel() {
+export default function useLoginViewModel() {
   const [errorMessage, setErrorMessage] = useState("");
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
- const{user, saveUserSesion} = useContext(UserContext);
-  console.log('USUARIO DE SESION: ' + JSON.stringify(user));
+ const{user, getUserSesion, saveUserSesion} = useContext(UserContext);
+ 
+  console.log('USUARIO DE SESION: ' + JSON.stringify(user, null, 3));
 
   const onChange = (property: string, value: any) => {
     setValues({ ...values, [property]: value });
@@ -24,14 +24,14 @@ export default function LoginViewModel() {
         values.email,
         values.password
       );
-      console.log("RESPONSE LOGIN: " + JSON.stringify(response));
+      console.log("RESPONSE LOGIN: " + JSON.stringify(response, null, 3));
 
       if(!response.success){
         setErrorMessage(response.message);
 
       }else {
         saveUserSesion(response.data);
-        getSelection();
+        getUserSesion();
         
       }
     }

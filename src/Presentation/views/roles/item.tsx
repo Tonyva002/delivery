@@ -22,7 +22,10 @@ export default function RolesItem({rol, height, width, navigation}: Props) {
            navigation.replace('AdminTabsNavigator') 
 
         } else if(rol.name == 'CUSTOMER'){
-           navigation.replace('ClientTabsNavigator')     
+           navigation.replace('CustomerTabsNavigator') 
+
+        } else if(rol.name == 'DELIVERY'){
+           navigation.replace('DeliveryTabsNavigator')     
         }
 
     }}

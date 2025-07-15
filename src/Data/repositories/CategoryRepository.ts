@@ -10,11 +10,13 @@ import mime from "mime";
 import { handleAxiosError } from "../../utils/handleAxiosError";
 
 export class CategoryRepositoryImp implements CategoryRepository {
+  
   //Metodo para listar las categorias
   async getAll(): Promise<Category[]> {
     try {
       const response = await ApiDelivery.get<Category[]>("/categories/getAll");
       return Promise.resolve(response.data);
+
     } catch (error) {
       handleAxiosError(error, "Error al listar la categoría");
       return Promise.resolve([]);
@@ -22,10 +24,7 @@ export class CategoryRepositoryImp implements CategoryRepository {
   }
 
   // Metodo para crear categoria
-  async create(
-    category: Category,
-    file: ImagePickerAsset
-  ): Promise<ResponseApiDelivery> {
+  async create(category: Category, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
     try {
       const formData = new FormData();
       const fileUri = file.uri;
@@ -39,22 +38,17 @@ export class CategoryRepositoryImp implements CategoryRepository {
       } as any);
 
       formData.append("category", JSON.stringify(category));
-
-      const response = await ApiDeliveryForImage.post<ResponseApiDelivery>(
-        "/categories/create",
-        formData
-      );
+      
+      const response = await ApiDeliveryForImage.post<ResponseApiDelivery>("/categories/create", formData);
       return response.data;
+
     } catch (error) {
       return handleAxiosError(error, "Error al crear categoría");
     }
   }
 
   // Metodo para actualizar categoria con imagen
-  async updateWithImage(
-    category: Category,
-    file: ImagePickerAsset
-  ): Promise<ResponseApiDelivery> {
+  async updateWithImage(category: Category, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
     try {
       const formData = new FormData();
       const fileUri = file.uri;
@@ -68,11 +62,9 @@ export class CategoryRepositoryImp implements CategoryRepository {
       } as any);
 
       formData.append("category", JSON.stringify(category));
-      const response = await ApiDeliveryForImage.put<ResponseApiDelivery>(
-        "/categories/updateWithImage",
-        formData
-      );
+      const response = await ApiDeliveryForImage.put<ResponseApiDelivery>("/categories/updateWithImage", formData);
       return response.data;
+
     } catch (error) {
       return handleAxiosError(error, "Error al actualizar la categoría");
     }
@@ -80,11 +72,10 @@ export class CategoryRepositoryImp implements CategoryRepository {
 
   // Metodo para actualizar la categoria sin imagen
   async updateWithoutImage(category: Category): Promise<ResponseApiDelivery> {
-    
     try {
-      const response = await ApiDelivery.put<ResponseApiDelivery>(
-        "/categories/updateWithoutImage", category);
+      const response = await ApiDelivery.put<ResponseApiDelivery>("/categories/updateWithoutImage", category);
       return Promise.resolve(response.data);
+
     } catch (error) {
       return handleAxiosError(error, "Error al actualizar la categoría");
     }
@@ -93,10 +84,9 @@ export class CategoryRepositoryImp implements CategoryRepository {
   // Metodo para eliminar categoria
   async remove(id: string): Promise<ResponseApiDelivery> {
     try {
-      const response = await ApiDelivery.delete<ResponseApiDelivery>(
-        `/categories/delete/${id}`
-      );
+      const response = await ApiDelivery.delete<ResponseApiDelivery>( `/categories/delete/${id}`);
       return Promise.resolve(response.data);
+
     } catch (error) {
       return handleAxiosError(error, "Error al eliminar la categoría");
     }

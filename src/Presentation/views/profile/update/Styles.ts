@@ -13,20 +13,23 @@ const ProfileUpdateStyles = StyleSheet.create({
     bottom: "30%",
   },
 
-  logoContainer: {
+  imageContainer: {
     position: "absolute",
     alignSelf: "center",
-    top: "8%",
-    alignItems: "center",
+    top: "6%",
+    
+    
   },
 
-  logoImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50
+  image: {
+    width: 170,
+    height: 170,
+    borderRadius: 100,
+    borderColor: 'white',
+    borderWidth: 2
   },
 
-  logoText: {
+  textImage: {
     color: "white",
     textAlign: "center",
     fontSize: 20,
@@ -35,14 +38,14 @@ const ProfileUpdateStyles = StyleSheet.create({
   },
 
   form: {
+    position: 'absolute',
     width: "100%",
-    height: "50%",
+    height: "60%",
     backgroundColor: "white",
-    position: "absolute",
-    bottom: 0,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     padding: 30,
+    bottom: 0,
   },
 
   formTitle: {
@@ -50,20 +53,10 @@ const ProfileUpdateStyles = StyleSheet.create({
     fontSize: 16,
   },
 
-  formSave: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 20,
-  },
-
-  formTextSave: {
-    fontStyle: "italic",
-    color: "orange",
-    borderBottomWidth: 1,
-    borderBottomColor: "orange",
-    fontWeight: "bold",
-    marginLeft: 10,
-  },
+   buttonContainer: {
+        marginTop: 30
+        
+    }
 
 });
 

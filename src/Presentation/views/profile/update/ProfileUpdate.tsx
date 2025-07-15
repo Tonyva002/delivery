@@ -9,21 +9,20 @@ import {
   StatusBar,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import useViewModel from "./ViewModel";
+import useProfileUpdateViewModel from "./ViewModel";
 import styles from "./Styles";
 import CustomTextInput from "../../../components/CustomTextInput";
 import RoundedButton from "../../../components/RoundedButton";
 import { ModalPickImage } from "../../../components/ModalPickImage";
 import { MyColors, MyStyles } from "../../../theme/AppTheme";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useFocusEffect } from "@react-navigation/native";
 import { StackParamList } from "../../../navigator/MainStackNavigator";
+import { useFocusEffect } from "@react-navigation/native";
 
-interface Props extends NativeStackScreenProps<StackParamList, 'ProfileUpdateScreen'>{};
+interface Props
+  extends NativeStackScreenProps<StackParamList, "ProfileUpdateScreen"> {}
 
-
-export default function ProfileUpdateScreen({navigation, route}: Props ) {
-
+export default function ProfileUpdateScreen({ navigation, route }: Props) {
   const { user } = route.params;
   const {
     name,
@@ -39,15 +38,23 @@ export default function ProfileUpdateScreen({navigation, route}: Props ) {
     update,
     pickImage,
     takePhoto,
-  } = useViewModel(user);
+  } = useProfileUpdateViewModel(user);
 
   const [modalVisible, setmodalVisible] = useState(false);
 
-   useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
+      StatusBar.setBarStyle("dark-content");
+      StatusBar.setBackgroundColor("transparent");
+      StatusBar.setTranslucent(true);
+    }, [])
+  );
+
+  useEffect(() => {
     if (errorMessage) {
       ToastAndroid.show(errorMessage, ToastAndroid.LONG);
       setErrorMessage("");
-      return; 
+      return;
     }
     if (successMessage) {
       ToastAndroid.show(successMessage, ToastAndroid.LONG);
@@ -55,36 +62,23 @@ export default function ProfileUpdateScreen({navigation, route}: Props ) {
     }
   }, [errorMessage, successMessage]);
 
-
-  useFocusEffect(
-  React.useCallback(() => {
-    StatusBar.setBarStyle('dark-content'); 
-    StatusBar.setBackgroundColor('#fff');  
-  }, [])
-);
- 
-
   return (
     <View style={styles.container}>
-
       <Image
         style={styles.imageBackground}
         source={require("../../../../../assets/city.jpg")}
       />
 
-      <View style={styles.logoContainer}>
+      <View style={styles.imageContainer}>
         <TouchableOpacity onPress={() => setmodalVisible(true)}>
           {image == "" ? (
-            <Image
-            style={styles.logoImage}
-            source={{uri: user?.image}}
-            />
+            <Image style={styles.image} source={{ uri: user?.image }} />
           ) : (
-            <Image style={styles.logoImage} source={{ uri: image }} />
+            <Image style={styles.image} source={{ uri: image }} />
           )}
         </TouchableOpacity>
 
-        <Text style={styles.logoText}>SELECT AN IMAGE</Text>
+        <Text style={styles.textImage}>SELECT AN IMAGE</Text>
       </View>
 
       <View style={styles.form}>
@@ -118,8 +112,7 @@ export default function ProfileUpdateScreen({navigation, route}: Props ) {
             value={phone}
           />
 
-
-          <View style={{ marginTop: 30 }}>
+          <View style={styles.buttonContainer}>
             <RoundedButton text="CONFIRMAR" onPress={() => update()} />
           </View>
         </ScrollView>

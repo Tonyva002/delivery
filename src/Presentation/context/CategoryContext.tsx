@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import { GetAllCategoryUseCase } from "../../Domain/useCase/category/GetAllCategory";
 import { CreateCategoryUseCase } from "../../Domain/useCase/category/CreateCategory";
 import { UpdateCategoryWithoutImageUseCase } from "../../Domain/useCase/category/updateCategoryWithoutImage";
-import { UpdateCategoryWithImageUseCase } from "../../Domain/useCase/category/uudateCategoryWithImage";
+import { UpdateCategoryWithImageUseCase } from "../../Domain/useCase/category/updateCategoryWithImage";
 import { DeleteCategoryUseCase } from "../../Domain/useCase/category/DeleteCategory";
 
 export interface CategoryContextProps {

@@ -1,32 +1,20 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AdminOrderListScreen from "../views/admin/order/list/OrderList";
 import { ProfileInfoScreen } from "../views/profile/info/ProfileInfo";
-import { Image, TouchableOpacity } from "react-native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import AdminCategoryNavigator, {
-  CategoryStackParamList,
-} from "./AdminCategoryNavigator";
+import { Image} from "react-native";
+import AdminCategoryStackNavigator from "./AdminCategoryStackNavigator";
+import AdminOrderStackNavigator from "./AdminOrderStackNavigator";
 
-type AdminTabsNavigatorProps = {
-  navigation: NativeStackNavigationProp<CategoryStackParamList>;
-};
 
-export type TabParamList = {
-  AdminCategoryNavigator: undefined;
-  AdminOrderListScreen: undefined;
-  ProfileInfoScreen: undefined;
-};
 
-const Tab = createBottomTabNavigator<TabParamList>();
+const Tab = createBottomTabNavigator();
 
-export default function AdminTabsNavigator({
-  navigation,
-}: AdminTabsNavigatorProps) {
+export default function AdminTabsNavigator() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-        name="AdminCategoryNavigator"
-        component={AdminCategoryNavigator}
+        name="AdminCategoryStackNavigator"
+        component={AdminCategoryStackNavigator}
         options={{
           tabBarLabel: "Categorias",
           tabBarActiveTintColor: "blue",
@@ -39,8 +27,8 @@ export default function AdminTabsNavigator({
         }}
       />
       <Tab.Screen
-        name="AdminOrderListScreen"
-        component={AdminOrderListScreen}
+        name="AdminOrderStackNavigator"
+        component={AdminOrderStackNavigator}
         options={{
           title: "Pedidos",
           tabBarLabel: "Pedidos",

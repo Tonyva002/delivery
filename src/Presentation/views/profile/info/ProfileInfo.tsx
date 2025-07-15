@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
-import { View, Text, Image, StatusBar, TouchableOpacity, Pressable } from "react-native";
-import userViewModel from "./ViewModel";
+import {
+  View,
+  Text,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+import useProfileInfoViewModel from "./ViewModel";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import styles from "./Styles";
 import RoundedButton from "../../../components/RoundedButton";
@@ -12,23 +19,25 @@ type ProfileScreenProps = {
 };
 
 export const ProfileInfoScreen = ({ navigation }: ProfileScreenProps) => {
-  const { removeUserSesion, user } = userViewModel();
+  const { removeUserSesion, user } = useProfileInfoViewModel();
 
   useFocusEffect(
-  React.useCallback(() => {
-    // código que se ejecuta al enfocarse la pantalla
-    StatusBar.setBarStyle('light-content');
-    StatusBar.setBackgroundColor('#000');
-  }, [])
-);
+    React.useCallback(() => {
+      StatusBar.setBarStyle("light-content");
+      StatusBar.setBackgroundColor("transparent");
+    }, [])
+  );
 
-useEffect(()=> {
-  if(user.id === ''){
-    navigation.replace('LoginScreen');
+  useEffect(() => {
+    if (!user || user.id === "") {
+      navigation.replace("LoginScreen");
+    }
+  }, [user]);
+
+
+  if (!user) {
+    return null;
   }
-}, [user])
-
-
 
   return (
     <View style={styles.container}>
@@ -36,27 +45,29 @@ useEffect(()=> {
         style={styles.imageBackground}
         source={require("../../../../../assets/city.jpg")}
       />
-       <Pressable
-       style={styles.logout}
-       onPress={() => {
-        removeUserSesion();
-       }}
-       >
+      <Pressable
+        style={styles.logout}
+        onPress={() => {
+          removeUserSesion();
+        }}
+      >
         <Image
-            source={require("../../../../../assets/logout.png")}
-            style={styles.logoutImage}
+          source={require("../../../../../assets/logout.png")}
+          style={styles.logoutImage}
+        />
+      </Pressable>
+
+      <View style={styles.imageContainer}>
+        {user?.image == "" ? (
+          <Image
+            style={styles.image}
+            source={require("../../../../../assets/user_image.png")}
           />
-       </Pressable>
-
-      <View style={styles.logoContainer}>
-       {
-        user?.image == "" ?
-         <Image style={styles.logoImage} source={require("../../../../../assets/user_image.png")} />
-
-        : user?.image !== ""
-        &&
-        <Image style={styles.logoImage} source={{ uri: user?.image }} />
-       }
+        ) : (
+          user?.image !== "" && (
+            <Image style={styles.image} source={{ uri: user?.image }} />
+          )
+        )}
       </View>
 
       <View style={styles.form}>
@@ -98,9 +109,14 @@ useEffect(()=> {
           </View>
         </View>
 
-         <RoundedButton onPress={() => {
-          navigation.navigate('ProfileUpdateScreen', {user: user!});
-         }} text="ACTUALIZAR INFORMACION" />
+        <View style={{ marginTop: 30 }}>
+          <RoundedButton
+            onPress={() => {
+              navigation.navigate("ProfileUpdateScreen", { user });
+            }}
+            text="ACTUALIZAR INFORMACION"
+          />
+        </View>
       </View>
     </View>
   );

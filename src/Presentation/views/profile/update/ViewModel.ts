@@ -5,10 +5,10 @@ import { User } from "../../../../Domain/entities/User";
 import { ResponseApiDelivery } from "../../../../Data/sources/models/ResponseApiDelivery";
 import { updateUserWithImageUseCase } from "../../../../Domain/useCase/user/UpdateUserWithImage";
 import { UserContext } from "../../../context/UserContext";
-import { pickImage as pickImageUtil } from "../../../../utils/pickImage";
-import { takePhoto as takePhotoUtil } from "../../../../utils/takePhoto";
+import {pickImageUtil } from "../../../../utils/pickImageUtil";
+import {takePhotoUtil } from "../../../../utils/takePhotoUtil";
 
-export default function ProfileUpdateViewModel(user: User) {
+export default function useProfileUpdateViewModel(user: User) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [values, setValues] = useState(user);

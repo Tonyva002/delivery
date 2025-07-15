@@ -19,7 +19,8 @@ export const MyColors = {
     gris_medio_oscuro: '#777777',
     gris_muy_oscuro: '#333333',
     gris_medio_claro: '#999999',
-    gris_muy_claro: '#DDDDDD',
+    gris_muy_claro: '#F2F2F2',
+    gris_medio: '#D4D4D4',
     gris_casi_blanco: '#EEEEEE'
 
 };

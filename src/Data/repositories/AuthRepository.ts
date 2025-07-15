@@ -11,17 +11,13 @@ import mime from "mime";
 import { handleAxiosError } from "../../utils/handleAxiosError";
 
 export class AuthRepositoryImpl implements AuthRepository {
+
   // Metodo para loguearse en la aplicacion
   async login(email: string, password: string): Promise<ResponseApiDelivery> {
     try {
-      const response = await ApiDelivery.post<ResponseApiDelivery>(
-        "/users/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await ApiDelivery.post<ResponseApiDelivery>("/users/login", {email, password,});
       return Promise.resolve(response.data);
+
     } catch (error) {
       return handleAxiosError(error, "Error al loguearse en la aplicacion");
     }
@@ -30,10 +26,7 @@ export class AuthRepositoryImpl implements AuthRepository {
   // Metodo para registrarse sin imagen
   async register(user: User): Promise<ResponseApiDelivery> {
     try {
-      const response = await ApiDelivery.post<ResponseApiDelivery>(
-        "/users/create",
-        user
-      );
+      const response = await ApiDelivery.post<ResponseApiDelivery>("/users/create", user);
       return Promise.resolve(response.data);
     } catch (error) {
       return handleAxiosError(error, "Error al registrar usuario sin imagen");
@@ -41,10 +34,7 @@ export class AuthRepositoryImpl implements AuthRepository {
   }
 
   // Metodo para registrarse con imagen
-  async registerWithImage(
-    user: User,
-    file: ImagePickerAsset
-  ): Promise<ResponseApiDelivery> {
+  async registerWithImage(user: User, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
     try {
       if (!file?.uri) {
         throw new Error("La imagen seleccionada no es válida.");
@@ -62,10 +52,7 @@ export class AuthRepositoryImpl implements AuthRepository {
 
       formData.append("user", JSON.stringify(user));
 
-      const { data } = await ApiDeliveryForImage.post<ResponseApiDelivery>(
-        "/users/createWithImage",
-        formData
-      );
+      const { data } = await ApiDeliveryForImage.post<ResponseApiDelivery>("/users/createWithImage", formData);
       return data;
       
     } catch (error) {

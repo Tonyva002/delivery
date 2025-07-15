@@ -1,14 +1,12 @@
 
-import {  ToastAndroid } from 'react-native'
-import React, { useState } from 'react'
-import { useUserLocal } from '../../hooks/useUserLocal';
+import React, { useContext, useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import { RegisterWithImageAuthUserCase } from '../../../Domain/useCase/auth/RegisterWithImage';
-import { SaveUserLocalUseCase } from '../../../Domain/useCase/userLocal/SaveUserLocal';
-import { pickImage as pickImageUtil } from '../../../utils/pickImage';
-import { takePhoto as takePhotoUtil } from '../../../utils/takePhoto';
+import { pickImageUtil } from '../../../utils/pickImageUtil';
+import { takePhotoUtil } from '../../../utils/takePhotoUtil';
+import { UserContext } from '../../context/UserContext';
 
-export default function RegisterViewModel() {
+export default function useRegisterViewModel() {
 
 const [errorMessage, setErrorMessage] = useState('');
 const [values, setValues] = useState({
@@ -23,7 +21,7 @@ const [values, setValues] = useState({
 
 const [loading, setloading] = useState(false);
 const [file, setfile] = useState<ImagePicker.ImagePickerAsset>();
-const { user, getUserSession } = useUserLocal();
+const { user, getUserSesion, saveUserSesion } = useContext(UserContext);
 
 const onChange = (property: string, value: any) => {
   setValues({...values, [property]: value})
@@ -44,11 +42,10 @@ const register = async () => {
     setloading(true);
     const response = await RegisterWithImageAuthUserCase(values, file!);
     setloading(false);
-    console.log('RESULT:' + JSON.stringify(response));
-
+  
     if(response.success){
-      await SaveUserLocalUseCase(response.data);
-      getUserSession();
+      await saveUserSesion(response.data);
+      getUserSesion();
        
     }else {
       setErrorMessage(response.message);

@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import useViewModel from "./ViewModel";
+import useRegisterViewModel from "./ViewModel";
 import styles from "./Styles";
 import CustomTextInput from "../../components/CustomTextInput";
 import RoundedButton from "../../components/RoundedButton";
@@ -16,12 +17,13 @@ import { ModalPickImage } from "../../components/ModalPickImage";
 import { MyColors, MyStyles } from "../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../navigator/MainStackNavigator";
+import { useFocusEffect } from "@react-navigation/native";
 
 type RegisterScreenProps = {
-  navigation: NativeStackNavigationProp<StackParamList, 'RegisterScreen'>;
+  navigation: NativeStackNavigationProp<StackParamList, "RegisterScreen">;
 };
 
-export default function RegisterScreen({navigation}: RegisterScreenProps ) {
+export default function RegisterScreen({ navigation }: RegisterScreenProps) {
   const {
     name,
     lastname,
@@ -38,28 +40,31 @@ export default function RegisterScreen({navigation}: RegisterScreenProps ) {
     register,
     pickImage,
     takePhoto,
-  } = useViewModel();
+  } = useRegisterViewModel();
 
   const [modalVisible, setmodalVisible] = useState(false);
 
-    useEffect(() => {
-  
-      if(user?.id !== null && user?.id != undefined){
-  
-        navigation.replace('ClientTabsNavigator');
-  
-      }
-  
-    },[user])
+  // Estado de la status bar
+  useFocusEffect(
+    React.useCallback(() => {
+      StatusBar.setBarStyle("light-content");
+      StatusBar.setBackgroundColor("transparent");
+    }, [])
+  );
 
+  useEffect(() => {
+    if (user?.id && user?.session_token) {
+      navigation.replace("CustomerTabsNavigator");
+    }
+  }, [user]);
+ 
+  // Manejo de mensajes de errores
   useEffect(() => {
     if (errorMessage != "") {
       ToastAndroid.show(errorMessage, ToastAndroid.LONG);
       setErrorMessage("");
     }
   }, [errorMessage]);
-
-  
 
   return (
     <View style={styles.container}>

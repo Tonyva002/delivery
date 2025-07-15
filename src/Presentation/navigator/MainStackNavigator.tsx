@@ -2,12 +2,13 @@ import React from "react";
 import { User } from "../../Domain/entities/User";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "../views/login/Login";
-import ClientTabsNavigator from "./ClientTabsNavigator";
+import CustomerTabsNavigator from "./CustomerTabsNavigator";
 import RegisterScreen from "../views/register/Register";
 import ProfileUpdateScreen from "../views/profile/update/ProfileUpdate";
 import RolesScreen from "../views/roles/Roles";
 import { UserProvider } from "../context/UserContext";
 import AdminTabsNavigator from "./AdminTabsNavigator";
+import DeliveryTabsNavigator from "./DeliveryTabsNavigator";
 
 
 
@@ -18,7 +19,8 @@ export type StackParamList = {
   RolesScreen: undefined;
   ProfileUpdateScreen: {user: User};
   AdminTabsNavigator: undefined;
-  ClientTabsNavigator: undefined;
+  CustomerTabsNavigator: undefined;
+  DeliveryTabsNavigator: undefined
  
 };
 
@@ -54,15 +56,21 @@ export default function MainStackNavigator() {
         />
 
         <Stack.Screen
-          name="ClientTabsNavigator"
-          component={ClientTabsNavigator}
+          name="CustomerTabsNavigator"
+          component={CustomerTabsNavigator}
+         
+        />
+
+        <Stack.Screen
+          name="DeliveryTabsNavigator"
+          component={DeliveryTabsNavigator}
          
         />
 
         <Stack.Screen
           name="RegisterScreen"
           component={RegisterScreen}
-          options={{ title: "" }}
+          options={{headerTransparent: true, }}
         />
 
 
@@ -80,7 +88,8 @@ export default function MainStackNavigator() {
           component={ProfileUpdateScreen}
           options={{ 
             headerShown: true,
-            title: "Actualizar usuario" }}
+            title: "Actualizar usuario",
+            }}
         />
 
     

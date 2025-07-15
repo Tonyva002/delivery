@@ -3,12 +3,13 @@ import React from "react";
 
 
 interface Props {
-  image: any;
-  placeholder: string;
-  value: string;
-  keyboardtype: KeyboardType;
-  secureTextEntry?: boolean;
-  property: string;
+  image: any,
+  placeholder: string,
+  value: string,
+  keyboardtype: KeyboardType,
+  secureTextEntry?: boolean,
+  property: string,
+  editable?: boolean,
   onChangeText: (property: string, value: any) => void;
 }
 
@@ -19,6 +20,7 @@ export default function CustomTextInput({
   keyboardtype,
   secureTextEntry,
   property,
+  editable = true,
   onChangeText,
 }: Props) {
   return (
@@ -31,6 +33,7 @@ export default function CustomTextInput({
         keyboardType={keyboardtype}
         secureTextEntry={secureTextEntry}
         onChangeText={(text) => onChangeText(property, text)}
+        editable={editable}
       />
     </View>
   );

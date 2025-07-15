@@ -26,13 +26,37 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pangea.pangea",
+       "config": {
+        "googleMapsApiKey": "AIzaSyB18NdpJqLp3KJZZJMEDv_JJNDt0aiybdg"
+      },
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "location",
+          "fetch",
+          "locationAlwaysAndWhenInUsePermission",
+          "isIosBackgroundLocationEnabled"
+        ]
+
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pangea.pangea",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyB18NdpJqLp3KJZZJMEDv_JJNDt0aiybdg"
+        }
+      },
+      "permissions": [
+        "ACCESS_BACKGROUND_LOCATION",
+        "isAndroidBackgroundLocationEnabled",
+        "isAndroidForegroundServiceEnabled"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

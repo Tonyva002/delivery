@@ -1,10 +1,11 @@
-import React from 'react'
-import { useUserLocal } from '../../hooks/useUserLocal'
+import { useContext } from 'react';
+import { UserContext } from '../../context/UserContext';
 
 
-export const RolesViewModel = () => {
+export default function useRolesViewModel() {
 
-  const {user} = useUserLocal();
+  const{user} = useContext(UserContext);
+
   return {
     user
 
@@ -12,4 +13,4 @@ export const RolesViewModel = () => {
    
 }
 
-export default RolesViewModel;
+
