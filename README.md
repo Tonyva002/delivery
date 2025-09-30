@@ -68,7 +68,7 @@ Visual Studio Code
 ![Screen 9](https://github.com/user-attachments/assets/ba6d438e-ebb9-44dd-a966-ce8c79f5a705)
 
 ### 10)
-![Screen 10](https://github.com/user-attachments/assets/2f35db39-a5a5-4b45-aff4-0a9dab6dae93)
+![Screen 10](https://github.com/user-attachments/assets/a93cee60-e811-40f9-ac3c-07b24c6a9f88)
 
 ### 11)
 ![Screen 11](https://github.com/user-attachments/assets/f77462ea-be0b-4d5a-afd7-8b15de71562c)
