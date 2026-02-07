@@ -1,10 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Order } from "../../Domain/entities/Order";
-import { OrderProvider } from "../context/OrderContext";
-import DeliveryOrderListScreen from "../views/delivery/order/list/OrderList";
-import DeliveryOrderDetailScreen from "../views/delivery/order/detail/OrderDetail";
-import DeliveryOrderMapScreen from "../views/delivery/order/map/OrderMap";
+import { Order } from "../../../Domain/entities/Order";
+import { OrderProvider } from "../../context/OrderContext";
+import DeliveryOrderListScreen from "../../views/delivery/order/list/OrderList";
+import DeliveryOrderDetailScreen from "../../views/delivery/order/detail/OrderDetail";
+import DeliveryOrderMapScreen from "../../views/delivery/order/map/OrderMap";
 
 export type DeliveryOrderStackParamList = {
   DeliveryOrderListScreen: undefined;

@@ -16,7 +16,7 @@ import RoundedButton from "../../components/RoundedButton";
 import { ModalPickImage } from "../../components/ModalPickImage";
 import { MyColors, MyStyles } from "../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../../navigator/MainStackNavigator";
+import { StackParamList } from "../../navigator/main-navigator/MainStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
 
 type RegisterScreenProps = {

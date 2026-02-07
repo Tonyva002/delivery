@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { ClientStackParamList } from "../../../../navigator/CustomerStackNavigator";
+import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
 import { MyColors } from "../../../../theme/AppTheme";
 import { Category } from "../../../../../Domain/entities/Category";
 
@@ -9,7 +9,10 @@ interface Props {
   category: Category;
   height: number;
   width: number;
-  navigation: NativeStackNavigationProp<ClientStackParamList,"CustomerCategoryListScreen">;
+  navigation: NativeStackNavigationProp<
+    ClientStackParamList,
+    "CustomerCategoryListScreen"
+  >;
 }
 
 export default function CustomerCategoryItem({
@@ -21,7 +24,9 @@ export default function CustomerCategoryItem({
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("CustomerProductListScreen", {id_category: category.id!,});
+        navigation.navigate("CustomerProductListScreen", {
+          id_category: category.id!,
+        });
       }}
       style={{ ...styles.container, height: height, width: width }}
     >

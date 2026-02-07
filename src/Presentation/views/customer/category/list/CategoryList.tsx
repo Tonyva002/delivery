@@ -9,10 +9,14 @@ import Carousel, {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CustomerCategoryItem from "./Item";
-import { ClientStackParamList } from "../../../../navigator/CustomerStackNavigator";
+import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
 
-type CategoryListScreenProps = {navigation: NativeStackNavigationProp<ClientStackParamList,"CustomerCategoryListScreen" >;
+type CategoryListScreenProps = {
+  navigation: NativeStackNavigationProp<
+    ClientStackParamList,
+    "CustomerCategoryListScreen"
+  >;
 };
 
 export default function CustomerCategoryListScreen({
@@ -38,7 +42,7 @@ export default function CustomerCategoryListScreen({
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   useEffect(() => {

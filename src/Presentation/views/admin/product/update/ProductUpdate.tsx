@@ -14,7 +14,7 @@ import CustomTextInput from "../../../../components/CustomTextInput";
 import useAdminProductUpdateViewModel from "./ViewModel";
 import RoundedButton from "../../../../components/RoundedButton";
 import { MyColors, MyStyles } from "../../../../theme/AppTheme";
-import { ProductStackParamList } from "../../../../navigator/AdminProductStackNavigator";
+import { ProductStackParamList } from "../../../../navigator/admin-navigator/AdminProductStackNavigator";
 import { ModalPickMultiImage } from "../../../../components/ModalPickMultiImage";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useFocusEffect } from "@react-navigation/native";

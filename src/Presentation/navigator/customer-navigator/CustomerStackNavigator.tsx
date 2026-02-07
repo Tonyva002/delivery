@@ -1,13 +1,15 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Product } from "../../Domain/entities/Product";
-import { ShoppingBagProvider } from "../context/ShoppingBagContext";
+import { Product } from "../../../Domain/entities/Product";
+import { ShoppingBagProvider } from "../../context/ShoppingBagContext";
 import { Image, TouchableOpacity } from "react-native";
-import CustomerAddressStackNavigator, { CustomerAddressStackParamList } from "./CustomerAddressStackNavigator";
+import CustomerAddressStackNavigator, {
+  CustomerAddressStackParamList,
+} from "./CustomerAddressStackNavigator";
 import { NavigatorScreenParams } from "@react-navigation/native";
-import CustomerCategoryListScreen from "../views/customer/category/list/CategoryList";
-import CustomerProductListScreen from "../views/customer/product/list/ProductList";
-import CustomerProductDetailScreen from "../views/customer/product/detail/ProductDetail";
-import CustomerShoppingBagScreen from "../views/customer/shopping/ShoppingBag";
+import CustomerCategoryListScreen from "../../views/customer/category/list/CategoryList";
+import CustomerProductListScreen from "../../views/customer/product/list/ProductList";
+import CustomerProductDetailScreen from "../../views/customer/product/detail/ProductDetail";
+import CustomerShoppingBagScreen from "../../views/customer/shopping/ShoppingBag";
 
 export type ClientStackParamList = {
   CustomerCategoryListScreen: undefined;
@@ -38,7 +40,7 @@ export const CustomerStackNavigator = () => {
                 onPress={() => navigation.navigate("CustomerShoppingBagScreen")}
               >
                 <Image
-                  source={require("../../../assets/shopping_cart.png")}
+                  source={require("../../../../assets/shopping_cart.png")}
                   style={{ width: 30, height: 30 }}
                 />
               </TouchableOpacity>
@@ -57,7 +59,7 @@ export const CustomerStackNavigator = () => {
                 onPress={() => navigation.navigate("CustomerShoppingBagScreen")}
               >
                 <Image
-                  source={require("../../../assets/shopping_cart.png")}
+                  source={require("../../../../assets/shopping_cart.png")}
                   style={{ width: 30, height: 30 }}
                 />
               </TouchableOpacity>

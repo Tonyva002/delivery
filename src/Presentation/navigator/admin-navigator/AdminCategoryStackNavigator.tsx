@@ -1,12 +1,13 @@
 import React from "react";
-import { Category } from "../../Domain/entities/Category";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { CategoryProvider } from "../context/CategoryContext";
-import AdminCategoryUpdateScreen from "../views/admin/category/update/CategoryUpdate";
-import AdminCategoryCreateScreen from "../views/admin/category/create/CategoryCreate";
-import AdminCategoryListScreen from "../views/admin/category/list/CategoryList";
 import { Image, TouchableOpacity } from "react-native";
+import { Category } from "../../../Domain/entities/Category";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { CategoryProvider } from "../../context/CategoryContext";
+import AdminCategoryUpdateScreen from "../../views/admin/category/update/CategoryUpdate";
+import AdminCategoryCreateScreen from "../../views/admin/category/create/CategoryCreate";
 import AdminProductStackNavigator from "./AdminProductStackNavigator";
+import AdminCategoryListScreen from "../../views/admin/category/list/CategoryList";
+
 
 export type CategoryStackParamList = {
   AdminCategoryListScreen: undefined;
@@ -37,7 +38,7 @@ export default function AdminCategoryStackNavigator() {
                 onPress={() => navigation.navigate("AdminCategoryCreateScreen")}
               >
                 <Image
-                  source={require("../../../assets/add.png")}
+                  source={require("../../../../assets/add.png")}
                   style={{ width: 35, height: 35 }}
                 />
               </TouchableOpacity>

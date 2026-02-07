@@ -1,16 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ProfileInfoScreen } from "../views/profile/info/ProfileInfo";
-import { Image} from "react-native";
+import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfo";
+import { Image } from "react-native";
 import DeliveryOrderStackNavigator from "./DeliveryOrderStackNavigator";
-
-
 
 const Tab = createBottomTabNavigator();
 
 export default function DeliveryTabsNavigator() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
-     
       <Tab.Screen
         name="DeliveryOrderStackNavigator"
         component={DeliveryOrderStackNavigator}
@@ -19,7 +16,7 @@ export default function DeliveryTabsNavigator() {
           tabBarLabel: "Pedidos",
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/orders.png")}
+              source={require("../../../../assets/orders.png")}
               style={{ width: 25, height: 25 }}
             />
           ),
@@ -36,7 +33,7 @@ export default function DeliveryTabsNavigator() {
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/user_menu.png")}
+              source={require("../../../../assets/user_menu.png")}
               style={{ width: 25, height: 25 }}
             />
           ),

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ClientStackParamList } from "../../../../navigator/CustomerStackNavigator";
+import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
 import { useSharedValue } from "react-native-reanimated";
@@ -18,36 +18,47 @@ import styles from "./Styles";
 import RoundedButton from "../../../../components/RoundedButton";
 import { useFocusEffect } from "@react-navigation/native";
 
-interface Props
-  extends NativeStackScreenProps<ClientStackParamList, "CustomerProductDetailScreen"> {}
+interface Props extends NativeStackScreenProps<
+  ClientStackParamList,
+  "CustomerProductDetailScreen"
+> {}
 
 export default function CustomerProductDetailScreen({
   navigation,
   route,
 }: Props) {
   const { product } = route.params;
-  const { productImages, quantity, total, shoppingBag, responseMessage, setResponseMessage, addToBag, addItem, subtractItem } =
-    useCustomerProductDetailViewModel(product);
+  const {
+    productImages,
+    quantity,
+    total,
+    shoppingBag,
+    responseMessage,
+    setResponseMessage,
+    addToBag,
+    addItem,
+    subtractItem,
+  } = useCustomerProductDetailViewModel(product);
 
   const width = Dimensions.get("window").width;
   const heigth = Dimensions.get("window").height;
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
 
- //Estado de la status bar
+  //Estado de la status bar
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle("light-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
-  
+
   //Manejo de mensajes
-  useEffect(()=> {
-    if(responseMessage){
+  useEffect(() => {
+    if (responseMessage) {
       ToastAndroid.show(responseMessage, ToastAndroid.LONG);
-      setResponseMessage('');
+      setResponseMessage("");
     }
   }, [responseMessage]);
 
@@ -96,29 +107,30 @@ export default function CustomerProductDetailScreen({
           <TouchableOpacity
             onPress={() => subtractItem()}
             style={styles.actionLess}
-            >
+          >
             <Text style={styles.actionText}>-</Text>
           </TouchableOpacity>
-          
+
           {/* Mostrar cantidad */}
           <View style={styles.quantity}>
             <Text style={styles.actionText}>{quantity}</Text>
           </View>
-          
+
           {/* Aumentar cantidad */}
           <TouchableOpacity onPress={() => addItem()} style={styles.actionAdd}>
             <Text style={styles.actionText}>+</Text>
           </TouchableOpacity>
 
           <View style={styles.buttonAdd}>
-            <RoundedButton text="AGREGAR AL CARRITO" onPress={() => addToBag()} />
+            <RoundedButton
+              text="AGREGAR AL CARRITO"
+              onPress={() => addToBag()}
+            />
           </View>
         </View>
       </View>
 
-      <TouchableOpacity 
-      onPress={() => navigation.pop()}
-      style={styles.back}>
+      <TouchableOpacity onPress={() => navigation.pop()} style={styles.back}>
         <Image
           style={styles.backImage}
           source={require("../../../../../../assets/arrow_back.png")}

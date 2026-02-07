@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { View, Text, FlatList, StatusBar } from "react-native";
 import useCustomerProductListViewModel from "./ViewModel";
-import { ClientStackParamList } from "../../../../navigator/CustomerStackNavigator";
+import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import CustomerProductItem from "./Item";
 import { useFocusEffect } from "@react-navigation/native";
 
+interface Props extends NativeStackScreenProps<
+  ClientStackParamList,
+  "CustomerProductListScreen"
+> {}
 
-interface Props extends NativeStackScreenProps<ClientStackParamList, "CustomerProductListScreen"> {}
-
-export default function CustomerProductListScreen({ navigation, route }: Props) {
+export default function CustomerProductListScreen({
+  navigation,
+  route,
+}: Props) {
   const { id_category } = route.params;
 
   const { products, getProducts } = useCustomerProductListViewModel();
@@ -19,7 +24,7 @@ export default function CustomerProductListScreen({ navigation, route }: Props) 
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   useEffect(() => {

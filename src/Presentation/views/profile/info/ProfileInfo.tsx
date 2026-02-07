@@ -12,7 +12,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import styles from "./Styles";
 import RoundedButton from "../../../components/RoundedButton";
 import { useFocusEffect } from "@react-navigation/native";
-import { StackParamList } from "../../../navigator/MainStackNavigator";
+import { StackParamList } from "../../../navigator/main-navigator/MainStackNavigator";
 
 type ProfileScreenProps = {
   navigation: NativeStackNavigationProp<StackParamList>;
@@ -25,7 +25,7 @@ export const ProfileInfoScreen = ({ navigation }: ProfileScreenProps) => {
     React.useCallback(() => {
       StatusBar.setBarStyle("light-content");
       StatusBar.setBackgroundColor("transparent");
-    }, [])
+    }, []),
   );
 
   useEffect(() => {
@@ -33,7 +33,6 @@ export const ProfileInfoScreen = ({ navigation }: ProfileScreenProps) => {
       navigation.replace("LoginScreen");
     }
   }, [user]);
-
 
   if (!user) {
     return null;

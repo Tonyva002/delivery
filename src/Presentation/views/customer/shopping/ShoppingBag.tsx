@@ -5,13 +5,20 @@ import ShoppingBagItem from "./Item";
 import RoundedButton from "../../../components/RoundedButton";
 import styles from "./Styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ClientStackParamList } from "../../../navigator/CustomerStackNavigator";
+import { ClientStackParamList } from "../../../navigator/customer-navigator/CustomerStackNavigator";
 
-interface Props extends NativeStackScreenProps<ClientStackParamList, "CustomerShoppingBagScreen"> {}
+interface Props extends NativeStackScreenProps<
+  ClientStackParamList,
+  "CustomerShoppingBagScreen"
+> {}
 
-export default function CustomerShoppingBagScreen({ navigation, route }: Props) {
-  const { shoppingBag, total, addItem, subtractItem, deleteItem } = useCustomerShoppingBagViewModel();
-  
+export default function CustomerShoppingBagScreen({
+  navigation,
+  route,
+}: Props) {
+  const { shoppingBag, total, addItem, subtractItem, deleteItem } =
+    useCustomerShoppingBagViewModel();
+
   return (
     <View style={styles.container}>
       <FlatList

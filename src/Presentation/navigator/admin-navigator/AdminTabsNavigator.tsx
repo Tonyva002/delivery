@@ -1,11 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import AdminOrderListScreen from "../views/admin/order/list/OrderList";
-import { ProfileInfoScreen } from "../views/profile/info/ProfileInfo";
-import { Image} from "react-native";
+import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfo";
+import { Image } from "react-native";
 import AdminCategoryStackNavigator from "./AdminCategoryStackNavigator";
 import AdminOrderStackNavigator from "./AdminOrderStackNavigator";
-
-
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +17,7 @@ export default function AdminTabsNavigator() {
           tabBarActiveTintColor: "blue",
           tabBarIcon: () => (
             <Image
-              source={require("../../../assets/list.png")}
+              source={require("../../../../assets/list.png")}
               style={{ width: 25, height: 25 }}
             />
           ),
@@ -34,7 +31,7 @@ export default function AdminTabsNavigator() {
           tabBarLabel: "Pedidos",
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/orders.png")}
+              source={require("../../../../assets/orders.png")}
               style={{ width: 25, height: 25 }}
             />
           ),
@@ -51,7 +48,7 @@ export default function AdminTabsNavigator() {
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/user_menu.png")}
+              source={require("../../../../assets/user_menu.png")}
               style={{ width: 25, height: 25 }}
             />
           ),

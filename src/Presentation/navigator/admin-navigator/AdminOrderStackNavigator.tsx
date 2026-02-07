@@ -1,9 +1,9 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AdminOrderListScreen from "../views/admin/order/list/OrderList";
-import AdminOrderDetailScreen from "../views/admin/order/detail/OrderDetail";
-import { Order } from "../../Domain/entities/Order";
-import { OrderProvider } from "../context/OrderContext";
+import AdminOrderListScreen from "../../views/admin/order/list/OrderList";
+import AdminOrderDetailScreen from "../../views/admin/order/detail/OrderDetail";
+import { Order } from "../../../Domain/entities/Order";
+import { OrderProvider } from "../../context/OrderContext";
 
 export type AdminOrderStackParamList = {
   AdminOrderListScreen: undefined;

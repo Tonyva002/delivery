@@ -1,10 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator} from "@react-navigation/native-stack";
 import { Image, TouchableOpacity } from "react-native";
-import { AddressProvider } from "../context/AddressContext";
-import CustomerAddressListScreen from "../views/customer/address/list/AddressList";
-import CustomerAddressCreateScreen from "../views/customer/address/create/AddressCreate";
-import CustomerAddressMapScreen from "../views/customer/address/map/AddressMap";
+import { AddressProvider } from "../../context/AddressContext";
+import CustomerAddressListScreen from "../../views/customer/address/list/AddressList";
+import CustomerAddressCreateScreen from "../../views/customer/address/create/AddressCreate";
+import CustomerAddressMapScreen from "../../views/customer/address/map/AddressMap";
 
 
 
@@ -36,7 +36,7 @@ export default function CustomerAddressStackNavigator() {
                 onPress={() => navigation.navigate("CustomerAddressCreateScreen")}
               >
                 <Image
-                  source={require("../../../assets/add.png")}
+                  source={require("../../../../assets/add.png")}
                   style={{ width: 30, height: 30 }}
                 />
               </TouchableOpacity>

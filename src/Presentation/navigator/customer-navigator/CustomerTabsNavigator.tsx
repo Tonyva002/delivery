@@ -1,8 +1,8 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ProfileInfoScreen } from "../views/profile/info/ProfileInfo";
 import { Image } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfo";
+import CustomerOrderListScreen from "../../views/customer/order/list/OrderList";
 import { CustomerStackNavigator } from "./CustomerStackNavigator";
-import CustomerOrderListScreen from "../views/customer/order/list/OrderList";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ export default function CustomerTabsNavigator() {
           tabBarLabel: "Categorias",
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/list.png")}
+              source={require("../../../../assets/list.png")}
               style={{ width: 25, height: 25 }}
             />
           ),
@@ -36,7 +36,7 @@ export default function CustomerTabsNavigator() {
           tabBarLabel: "Pedidos",
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/orders.png")}
+              source={require("../../../../assets/orders.png")}
               style={{ width: 25, height: 25 }}
             />
           ),
@@ -53,7 +53,7 @@ export default function CustomerTabsNavigator() {
           headerShown: false,
           tabBarIcon: ({ color }) => (
             <Image
-              source={require("../../../assets/user_menu.png")}
+              source={require("../../../../assets/user_menu.png")}
               style={{ width: 25, height: 25 }}
             />
           ),

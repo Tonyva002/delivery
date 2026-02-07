@@ -12,7 +12,7 @@ import useLoginViewModel from "./ViewModel";
 import CustomTextInput from "../../components/CustomTextInput";
 import RoundedButton from "../../components/RoundedButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { StackParamList } from "../../navigator/MainStackNavigator";
+import { StackParamList } from "../../navigator/main-navigator/MainStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
 
 type LoginScreenProps = {
