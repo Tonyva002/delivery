@@ -40,8 +40,10 @@ Visual Studio Code
 
 ## Capturas de Pantalla
 
-### 1)
-![Screen 1](https://github.com/user-attachments/assets/ca61a3c0-b834-4e4a-9dea-1df7ad8837bb)
+## Customer
+
+### 1
+![Screen 1](https://github.com/user-attachments/assets/17a7e190-3300-406f-a390-a09bd42a0003)
 
 ### 2)
 ![Screen 2](https://github.com/user-attachments/assets/fbd59920-d910-43b9-b5b9-35ddfc01dc20)
@@ -82,6 +84,28 @@ Visual Studio Code
 ### 14)
 ![Screen 14](https://github.com/user-attachments/assets/60cb25d2-749f-4764-898c-41461ba7bc96)
 
+## Admin
+
+### 1. Lista de categorias
+![Screen 1](https://github.com/user-attachments/assets/69f2b56b-2fbf-40b4-91da-65374206eedd)
+
+### 2. Lista de categorias
+![Screen 2](https://github.com/user-attachments/assets/073fd750-c385-45f5-b6a5-3517a6064abb)
+
+### 3. Productos
+![Screen 3](https://github.com/user-attachments/assets/4806c18d-42c3-434c-a0f2-c2141c8993b9)
+
+### 4. Actualizar producto
+![Screen 4](https://github.com/user-attachments/assets/39dcf37f-dbed-49ae-b9fe-8691ef18ad93)
+
+### 5. Pedidos
+![Screen 5](https://github.com/user-attachments/assets/a6f2bd18-1c58-4beb-8dae-dec92805884d)
+
+### 6. Pedidos
+![Screen 6](https://github.com/user-attachments/assets/6ae9deea-a9eb-4197-8aff-3ff8d85fdcc6)
+
+### 7. Detalle de la orden
+![Screen 7](https://github.com/user-attachments/assets/ed8f9966-cce0-489e-b976-02eda55a58ce)
 
 
 
