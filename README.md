@@ -41,7 +41,7 @@ Visual Studio Code
 ## Capturas de Pantalla
 
 ### 1)
-![Screen 1](https://github.com/user-attachments/assets/98ad87ee-43af-4e6f-abb7-483512759722)
+![Screen 1](https://github.com/user-attachments/assets/ca61a3c0-b834-4e4a-9dea-1df7ad8837bb)
 
 ### 2)
 ![Screen 2](https://github.com/user-attachments/assets/ed7a967f-0e6e-47c4-976b-90072ccf6e72)
