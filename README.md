@@ -38,51 +38,57 @@ Visual Studio Code
 - Step 6. Give it to run.
 
 
-## Capturas de Pantalla
+## Capturas de Pantallas
 
 ## Customer
 
-### 1
-![Screen 1](https://github.com/user-attachments/assets/17a7e190-3300-406f-a390-a09bd42a0003)
+### 1. Pantalla de login
+![Screen 1](https://github.com/user-attachments/assets/f9b7c16a-241b-4a8a-9f3f-4cf8bfc1038c)
 
-### 2)
+
+### 2. Pantalla de registro
 ![Screen 2](https://github.com/user-attachments/assets/fbd59920-d910-43b9-b5b9-35ddfc01dc20)
 
-### 3)
+
+### 3. Agregar imagen de usuario
 ![Screen 3](https://github.com/user-attachments/assets/5e58a240-7d7a-4956-b25c-0374bcad8a03)
 
-### 4)
-![Screen 4](https://github.com/user-attachments/assets/a499f29e-48fd-452a-9313-74789cbc661b)
 
-### 5)
-![Pantalla 5](https://github.com/user-attachments/assets/463d7877-9536-47e9-82e5-80cf94746741)
+### 4. Rol de usuario
+![Screen 4](https://github.com/user-attachments/assets/e98502ba-0dd7-4175-ad6f-a36d10c40848)
 
-### 6)
-![Screen 6](https://github.com/user-attachments/assets/e98502ba-0dd7-4175-ad6f-a36d10c40848)
 
-### 7)
-![Screen 7](https://github.com/user-attachments/assets/6ba00807-5192-4e8e-b85f-833051ccfa84)
+### 5. Pantalla de categorias
+![Screen 5](https://github.com/user-attachments/assets/5b79ded9-9d2a-4b64-b887-d20690db0a5a)
 
-### 8)
-![Screen 8](https://github.com/user-attachments/assets/f07e783c-1d5d-41a1-a18a-266091a927ee)
 
-### 9)
-![Screen 9](https://github.com/user-attachments/assets/ba6d438e-ebb9-44dd-a966-ce8c79f5a705)
+### 6. Pantalla de productos
+![Screen 6](https://github.com/user-attachments/assets/f07e783c-1d5d-41a1-a18a-266091a927ee)
 
-### 10)
-![Screen 10](https://github.com/user-attachments/assets/a93cee60-e811-40f9-ac3c-07b24c6a9f88)
 
-### 11)
-![Screen 11](https://github.com/user-attachments/assets/f77462ea-be0b-4d5a-afd7-8b15de71562c)
+### 7. Pantalla de detalles del producto
+![Screen 7](https://github.com/user-attachments/assets/a90f0e63-b00f-4181-bacb-fbe0b7cbd8da)
 
-### 12)
-![Screen 12](https://github.com/user-attachments/assets/7b941c5a-0fc7-4e8d-9fba-ca219bdac1a3)
+
+### 8. Pantalla de carrito de compras
+![Screen 8](https://github.com/user-attachments/assets/8dacc296-b726-4748-9b69-8c5ef5380a03)
+
+
+### 9. Pantalla de agregar direcciones
+![Screen 9](https://github.com/user-attachments/assets/faf86ae1-8fb9-4717-b8d4-1ac7d23bf4ad)
+
+
+### 10. Pantalla de agregar direcciones
+![Screen 10](https://github.com/user-attachments/assets/81e1c254-9b42-4944-935f-8e85824e7806)
+
 
 ### 13)
 ![Screen 13](https://github.com/user-attachments/assets/d9eccf66-4e97-40c4-8ff3-bccea16a6b17)
 
+
 ### 14)
 ![Screen 14](https://github.com/user-attachments/assets/60cb25d2-749f-4764-898c-41461ba7bc96)
+
 
 ## Admin
 
