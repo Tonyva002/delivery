@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
       StatusBar.setBarStyle("light-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   useEffect(() => {
@@ -56,11 +56,12 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
   return (
     <View style={LoginStyles.container}>
+      {/*Imagen de fondo */}
       <Image
         style={LoginStyles.imageBackground}
         source={require("../../../../assets/chef.jpg")}
       />
-
+      {/*Imagen de logo */}
       <View style={LoginStyles.logoContainer}>
         <Image
           style={LoginStyles.logoImage}
@@ -69,8 +70,9 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         <Text style={LoginStyles.logoText}>FOOD</Text>
       </View>
 
-      <View style={LoginStyles.form}>
-        <Text style={LoginStyles.formTitle}>LOGIN</Text>
+      {/*Formulario*/}
+      <View style={LoginStyles.formContainer}>
+        <Text style={LoginStyles.formTitle}>INGRESAR</Text>
 
         <CustomTextInput
           image={require("../../../../assets/email.png")}
@@ -87,13 +89,15 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           value={password}
           keyboardtype="default"
           property="password"
+          secureTextEntry={true}
           onChangeText={onChange}
         />
-
+        {/*Loguearse */}
         <View style={{ marginTop: 40 }}>
           <RoundedButton text="LOGIN" onPress={() => login()} />
         </View>
 
+        {/*Navegar a registro */}
         <View style={LoginStyles.formRegister}>
           <Text>Don't have an account?</Text>
           <TouchableOpacity

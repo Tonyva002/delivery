@@ -49,7 +49,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     React.useCallback(() => {
       StatusBar.setBarStyle("light-content");
       StatusBar.setBackgroundColor("transparent");
-    }, [])
+    }, []),
   );
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
       navigation.replace("CustomerTabsNavigator");
     }
   }, [user]);
- 
+
   // Manejo de mensajes de errores
   useEffect(() => {
     if (errorMessage != "") {

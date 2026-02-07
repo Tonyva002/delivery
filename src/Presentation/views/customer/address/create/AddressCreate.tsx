@@ -17,7 +17,10 @@ import { useFocusEffect } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CustomerAddressStackParamList } from "../../../../navigator/CustomerAddressStackNavigator";
 
-interface Props extends NativeStackScreenProps<CustomerAddressStackParamList,"CustomerAddressCreateScreen"> {}
+interface Props extends NativeStackScreenProps<
+  CustomerAddressStackParamList,
+  "CustomerAddressCreateScreen"
+> {}
 
 export default function CustomerAddressCreateScreen({
   navigation,
@@ -32,9 +35,9 @@ export default function CustomerAddressCreateScreen({
     loading,
     responseMessage,
     errorMessage,
-    refPoint, 
-    latitude, 
-    longitude, 
+    refPoint,
+    latitude,
+    longitude,
     resetAddress,
     setResponseMessage,
     setErrorMessage,
@@ -42,7 +45,6 @@ export default function CustomerAddressCreateScreen({
     onChange,
     onChangeRefPoint,
   } = useCustomerAddresCreateViewModel();
-  
 
   // Estado de la estatus bar
   useFocusEffect(
@@ -50,23 +52,22 @@ export default function CustomerAddressCreateScreen({
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
-  
+
   // Manejo de mensajes
- useEffect(() => {
-  if (responseMessage !== "") {
-    ToastAndroid.show(responseMessage, ToastAndroid.LONG);
-    setResponseMessage("");
-    resetAddress(); // limpiar el contexto después de guardar la información
-  }
+  useEffect(() => {
+    if (responseMessage !== "") {
+      ToastAndroid.show(responseMessage, ToastAndroid.LONG);
+      setResponseMessage("");
+      resetAddress(); // limpiar el contexto después de guardar la información
+    }
 
-  if (errorMessage !== "") {
-    ToastAndroid.show(errorMessage, ToastAndroid.LONG);
-    setErrorMessage("");
-  }
-}, [responseMessage, errorMessage]);
-
+    if (errorMessage !== "") {
+      ToastAndroid.show(errorMessage, ToastAndroid.LONG);
+      setErrorMessage("");
+    }
+  }, [responseMessage, errorMessage]);
 
   // Carga los valores seleccionados en el mapa: refPoint, latitude y longitude
   useFocusEffect(
@@ -74,14 +75,12 @@ export default function CustomerAddressCreateScreen({
       if (refPoint && latitude && longitude) {
         onChangeRefPoint(refPoint, latitude, longitude);
       }
-    }, [refPoint, latitude, longitude])
+    }, [refPoint, latitude, longitude]),
   );
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.imageContainer}
-      >
+      <TouchableOpacity style={styles.imageContainer}>
         <Image
           style={styles.image}
           source={require("../../../../../../assets/map.png")}

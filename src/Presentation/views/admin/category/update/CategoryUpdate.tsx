@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -21,9 +20,15 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CategoryStackParamList } from "../../../../navigator/AdminCategoryStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
 
-interface Props extends NativeStackScreenProps< CategoryStackParamList, "AdminCategoryUpdateScreen"> {}
+interface Props extends NativeStackScreenProps<
+  CategoryStackParamList,
+  "AdminCategoryUpdateScreen"
+> {}
 
-export default function AdminCategoryUpdateScreen({ navigation, route,}: Props) {
+export default function AdminCategoryUpdateScreen({
+  navigation,
+  route,
+}: Props) {
   const { category } = route.params;
   const {
     name,
@@ -39,14 +44,14 @@ export default function AdminCategoryUpdateScreen({ navigation, route,}: Props) 
   } = useAdminUpdateCategoryViewModel(category);
 
   const [modalVisible, setmodalVisible] = useState(false);
-  
+
   //Estado de la status bar
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   // Manejo de mensajes
@@ -105,10 +110,7 @@ export default function AdminCategoryUpdateScreen({ navigation, route,}: Props) 
 
         {/* Botón fijo al fondo */}
         <View style={styles.buttonContainer}>
-          <RoundedButton
-            text="ACTUALIZAR CATEGORIA"
-            onPress={updateCategory}
-          />
+          <RoundedButton text="ACTUALIZAR CATEGORIA" onPress={updateCategory} />
         </View>
 
         <ModalPickImage

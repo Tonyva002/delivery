@@ -33,16 +33,16 @@ export default function AdminCategoryCreateScreen() {
   } = useAdminCategoryCreateViewModel();
 
   const [modalVisible, setmodalVisible] = useState(false);
- 
+
   // Estado de la status bar
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
-  
+
   //Manejo de mensajes
   useEffect(() => {
     if (responseMessage !== "") {
@@ -99,10 +99,7 @@ export default function AdminCategoryCreateScreen() {
 
         {/* Botón fijo al fondo */}
         <View style={styles.buttonContainer}>
-          <RoundedButton
-            text="CREAR CATEGORIA"
-            onPress={createCategory}
-          />
+          <RoundedButton text="CREAR CATEGORIA" onPress={createCategory} />
         </View>
 
         <ModalPickImage
@@ -123,4 +120,3 @@ export default function AdminCategoryCreateScreen() {
     </KeyboardAvoidingView>
   );
 }
-

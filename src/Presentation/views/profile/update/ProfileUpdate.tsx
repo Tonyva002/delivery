@@ -19,8 +19,10 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackParamList } from "../../../navigator/MainStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
 
-interface Props
-  extends NativeStackScreenProps<StackParamList, "ProfileUpdateScreen"> {}
+interface Props extends NativeStackScreenProps<
+  StackParamList,
+  "ProfileUpdateScreen"
+> {}
 
 export default function ProfileUpdateScreen({ navigation, route }: Props) {
   const { user } = route.params;
@@ -47,7 +49,7 @@ export default function ProfileUpdateScreen({ navigation, route }: Props) {
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   useEffect(() => {

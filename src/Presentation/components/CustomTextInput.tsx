@@ -1,20 +1,19 @@
 import { View, TextInput, KeyboardType, StyleSheet, Image } from "react-native";
 import React from "react";
 
-
 interface Props {
-  image: any,
-  placeholder: string,
-  value: string,
-  keyboardtype: KeyboardType,
-  secureTextEntry?: boolean,
-  property: string,
-  editable?: boolean,
+  image: any;
+  placeholder: string;
+  value: string;
+  keyboardtype: KeyboardType;
+  secureTextEntry?: boolean;
+  property: string;
+  editable?: boolean;
   onChangeText: (property: string, value: any) => void;
 }
 
 export default function CustomTextInput({
-  image,
+  image: image,
   placeholder,
   value,
   keyboardtype,
@@ -24,8 +23,8 @@ export default function CustomTextInput({
   onChangeText,
 }: Props) {
   return (
-    <View style={styles.formInput}>
-      <Image style={styles.formIcon} source={image} />
+    <View style={styles.formView}>
+      <Image style={styles.formImage} source={image} />
       <TextInput
         style={styles.formTextInput}
         placeholder={placeholder}
@@ -40,15 +39,15 @@ export default function CustomTextInput({
 }
 
 const styles = StyleSheet.create({
-  formIcon: {
+  formView: {
+    flexDirection: "row",
+    marginTop: 25,
+  },
+
+  formImage: {
     width: 25,
     height: 25,
     marginTop: 5,
-  },
-
-  formInput: {
-    flexDirection: "row",
-    marginTop: 25,
   },
 
   formTextInput: {
