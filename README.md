@@ -45,54 +45,43 @@ Visual Studio Code
 ### 1. Pantalla de login
 ![Screen 1](https://github.com/user-attachments/assets/f9b7c16a-241b-4a8a-9f3f-4cf8bfc1038c)
 
-
 ### 2. Pantalla de registro
 ![Screen 2](https://github.com/user-attachments/assets/fbd59920-d910-43b9-b5b9-35ddfc01dc20)
-
 
 ### 3. Agregar imagen de usuario
 ![Screen 3](https://github.com/user-attachments/assets/5e58a240-7d7a-4956-b25c-0374bcad8a03)
 
-
 ### 4. Rol de usuario
 ![Screen 4](https://github.com/user-attachments/assets/e98502ba-0dd7-4175-ad6f-a36d10c40848)
-
 
 ### 5. Pantalla de categorias
 ![Screen 5](https://github.com/user-attachments/assets/5b79ded9-9d2a-4b64-b887-d20690db0a5a)
 
-
 ### 6. Pantalla de productos
 ![Screen 6](https://github.com/user-attachments/assets/f07e783c-1d5d-41a1-a18a-266091a927ee)
-
 
 ### 7. Pantalla de detalles del producto
 ![Screen 7](https://github.com/user-attachments/assets/a90f0e63-b00f-4181-bacb-fbe0b7cbd8da)
 
-
 ### 8. Pantalla de carrito de compras
 ![Screen 8](https://github.com/user-attachments/assets/8dacc296-b726-4748-9b69-8c5ef5380a03)
-
 
 ### 9. Pantalla de agregar direcciones
 ![Screen 9](https://github.com/user-attachments/assets/faf86ae1-8fb9-4717-b8d4-1ac7d23bf4ad)
 
-
 ### 10. Pantalla de agregar direcciones
 ![Screen 10](https://github.com/user-attachments/assets/81e1c254-9b42-4944-935f-8e85824e7806)
 
+### 11. Pantalla de perfil de usuario
+![Screen 11](https://github.com/user-attachments/assets/d9eccf66-4e97-40c4-8ff3-bccea16a6b17)
 
-### 13)
-![Screen 13](https://github.com/user-attachments/assets/d9eccf66-4e97-40c4-8ff3-bccea16a6b17)
-
-
-### 14)
-![Screen 14](https://github.com/user-attachments/assets/60cb25d2-749f-4764-898c-41461ba7bc96)
+### 12. Pantalla de actualizar el perfil del usuario
+![Screen 12](https://github.com/user-attachments/assets/60cb25d2-749f-4764-898c-41461ba7bc96)
 
 
 ## Admin
 
-### 1. Lista de categorias
+### 1.Pantalla de seleccionar el rol de usuario
 ![Screen 1](https://github.com/user-attachments/assets/69f2b56b-2fbf-40b4-91da-65374206eedd)
 
 ### 2. Lista de categorias
