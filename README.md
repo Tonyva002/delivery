@@ -87,20 +87,26 @@ Visual Studio Code
 ### 2. Lista de categorias
 ![Screen 2](https://github.com/user-attachments/assets/073fd750-c385-45f5-b6a5-3517a6064abb)
 
-### 3. Productos
-![Screen 3](https://github.com/user-attachments/assets/4806c18d-42c3-434c-a0f2-c2141c8993b9)
+### 3. Agregar categoria
+![Screen 3](https://github.com/user-attachments/assets/a7dc2591-9ef5-4e04-b06a-e3eb3bd1a4b9)
 
-### 4. Actualizar producto
-![Screen 4](https://github.com/user-attachments/assets/39dcf37f-dbed-49ae-b9fe-8691ef18ad93)
+### 4. Productos
+![Screen 4](https://github.com/user-attachments/assets/4806c18d-42c3-434c-a0f2-c2141c8993b9)
 
-### 5. Pedidos
-![Screen 5](https://github.com/user-attachments/assets/a6f2bd18-1c58-4beb-8dae-dec92805884d)
+### 5. Actualizar producto
+![Screen 5](https://github.com/user-attachments/assets/39dcf37f-dbed-49ae-b9fe-8691ef18ad93)
 
-### 6. Pedidos
-![Screen 6](https://github.com/user-attachments/assets/6ae9deea-a9eb-4197-8aff-3ff8d85fdcc6)
+### 6. Agregar producto
+![Screen 6](https://github.com/user-attachments/assets/631b615e-737c-4adb-8699-b60498c9ddea)
 
-### 7. Detalle de la orden
-![Screen 7](https://github.com/user-attachments/assets/ed8f9966-cce0-489e-b976-02eda55a58ce)
+### 7. Pedidos
+![Screen 7](https://github.com/user-attachments/assets/a6f2bd18-1c58-4beb-8dae-dec92805884d)
+
+### 8. Pedidos
+![Screen 8](https://github.com/user-attachments/assets/6ae9deea-a9eb-4197-8aff-3ff8d85fdcc6)
+
+### 9. Detalle de la orden
+![Screen 9](https://github.com/user-attachments/assets/ed8f9966-cce0-489e-b976-02eda55a58ce)
 
 
 
