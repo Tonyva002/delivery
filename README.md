@@ -44,10 +44,10 @@ Visual Studio Code
 ![Screen 1](https://github.com/user-attachments/assets/ca61a3c0-b834-4e4a-9dea-1df7ad8837bb)
 
 ### 2)
-![Screen 2](https://github.com/user-attachments/assets/ed7a967f-0e6e-47c4-976b-90072ccf6e72)
+![Screen 2](https://github.com/user-attachments/assets/fbd59920-d910-43b9-b5b9-35ddfc01dc20)
 
 ### 3)
-![Screen 3](https://github.com/user-attachments/assets/7d5093ab-d2f4-4ec8-a988-d0407bed2c86)
+![Screen 3](https://github.com/user-attachments/assets/5e58a240-7d7a-4956-b25c-0374bcad8a03)
 
 ### 4)
 ![Screen 4](https://github.com/user-attachments/assets/a499f29e-48fd-452a-9313-74789cbc661b)
