@@ -11,6 +11,7 @@ const registerStyles = StyleSheet.create({
     height: "100%",
     opacity: 0.7,
     bottom: "30%",
+    
   },
 
   logoContainer: {

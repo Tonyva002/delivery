@@ -38,10 +38,10 @@ export default function useCustomerProductDetailViewModel(product: Product) {
     setQuantity(quantity + 1);
   }
 
-   const subtractItem = () => {
-   if(quantity > 0){
-     setQuantity(quantity - 1);
-   }
+  const subtractItem = () => {
+  if(quantity > 0){
+      setQuantity(quantity - 1);
+  }
   }
 
   return {

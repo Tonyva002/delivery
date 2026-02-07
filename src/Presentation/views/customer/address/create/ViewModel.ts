@@ -22,7 +22,7 @@ export default function useCustomerAddresCreateViewModel() {
   const { user, saveUserSesion, getUserSesion } = useContext(UserContext);
   const { refPoint, latitude, longitude, resetAddress } = useAddress();
 
-  // Actualiza el id del usuario
+  // Actualizar el id del usuario
   useEffect(() => {
     if (user?.id != "") {
       onChange("id_user", user.id);

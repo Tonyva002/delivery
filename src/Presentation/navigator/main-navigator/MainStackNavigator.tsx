@@ -37,7 +37,7 @@ export default function MainStackNavigator() {
         <Stack.Screen
           name="LoginScreen"
           component={LoginScreen}
-          options={{ headerShown: true, title: "Nuevo usuario" }}
+          options={{ title: "" }}
         />
 
         <Stack.Screen

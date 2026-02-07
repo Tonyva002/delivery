@@ -52,17 +52,18 @@ const styles = StyleSheet.create({
   },
 
   infoAddress: {
-        marginLeft: 5,
-       
+  
+    marginLeft: 5,
   },
 
   address: {
-        fontWeight: 'bold',
+
+    fontWeight: 'bold',
 
   },
 
   neighborhood: {
-        fontSize: 12
+    fontSize: 12
 
   },
 
@@ -70,6 +71,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 1,
     marginHorizontal: 20,
-    backgroundColor: MyColors.gris_casi_blanco,
+    backgroundColor: MyColors.background,
   },
 });

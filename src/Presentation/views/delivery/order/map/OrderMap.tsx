@@ -11,17 +11,17 @@ import styles from "./Styles";
 import useDeliveryOrderMapViewModel from "./ViewModel";
 import RoundedButton from "../../../../components/RoundedButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { DeliveryOrderStackParamList } from "../../../../navigator/DeliveryOrderStackNavigator";
 import MapViewDirections from "react-native-maps-directions";
-import { GOOGLE_MAPS_APIKEY } from "../../../../contants/GoogleMapApiKey";
+import { GOOGLE_MAPS_APIKEY } from "../../../../constants/GoogleMapApiKey";
+import { DeliveryOrderStackParamList } from "../../../../navigator/delivery-navigator/DeliveryOrderStackNavigator";
 
-interface Prpops
+interface Props
   extends NativeStackScreenProps<
     DeliveryOrderStackParamList,
     "DeliveryOrderMapScreen"
   > {}
 
-export default function DeliveryOrderMapScreen({ navigation, route }: Prpops) {
+export default function DeliveryOrderMapScreen({ navigation, route }: Props) {
   const { order } = route.params;
   const {
     mapRef,

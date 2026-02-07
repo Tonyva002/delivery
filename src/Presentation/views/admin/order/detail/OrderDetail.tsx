@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { FlatList, Image, Text, ToastAndroid, View } from "react-native";
 import styles from "./Styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AdminOrderStackParamList } from "../../../../navigator/AdminOrderStackNavigator";
 import OrderDetailItem from "./Item";
 import dateFormatter from "../../../../../utils/dateFormatter";
 import useAdminOrderDetailViewModel from "./ViewModel";
 import RoundedButton from "../../../../components/RoundedButton";
 import DropDownPicker from "react-native-dropdown-picker";
+import { AdminOrderStackParamList } from "../../../../navigator/admin-navigator/AdminOrderStackNavigator";
 
 interface Props
   extends NativeStackScreenProps<
@@ -105,7 +105,7 @@ export default function AdminOrderDetailScreen({ navigation, route }: Props) {
           order.status === 'PAGADO'
           ? <View>
             <Text style={styles.delivery}>ASIGNAR REPARTIDOR</Text>
-             <View style={styles.dropDownContainer}>
+            <View style={styles.dropDownContainer}>
           <DropDownPicker
             open={open}
             value={value}

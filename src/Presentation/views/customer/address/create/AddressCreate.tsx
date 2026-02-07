@@ -15,7 +15,8 @@ import RoundedButton from "../../../../components/RoundedButton";
 import { MyColors, MyStyles } from "../../../../theme/AppTheme";
 import { useFocusEffect } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { CustomerAddressStackParamList } from "../../../../navigator/CustomerAddressStackNavigator";
+import { CustomerAddressStackParamList } from "../../../../navigator/customer-navigator/CustomerAddressStackNavigator";
+
 
 interface Props extends NativeStackScreenProps<
   CustomerAddressStackParamList,
@@ -138,7 +139,7 @@ export default function CustomerAddressCreateScreen({
             onPress={() => navigation.navigate("CustomerAddressMapScreen")}
           >
             <CustomTextInput
-              placeholder="Punto de regerencia"
+              placeholder="Punto de referencia"
               image={require("../../../../../../assets/location.png")}
               keyboardtype="default"
               property="refPoint"

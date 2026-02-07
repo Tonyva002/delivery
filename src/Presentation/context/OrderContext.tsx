@@ -46,7 +46,7 @@ export const OrderProvider = ({ children }: any) => {
   };
 
 
-  //Obterner las ordenes segun el status(PAGADO, DESPACHADO, EN CAMINO, ENTREGADO)
+  //Obtener las ordenes segun el status(PAGADO, DESPACHADO, EN CAMINO, ENTREGADO)
   const getOrdersByStatus = async (status: string) => {
     const response = await GetByStatusOrderUseCase(status);
     updateOrdersList(status, response);

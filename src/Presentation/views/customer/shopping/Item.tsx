@@ -27,7 +27,7 @@ export default function ShoppingBagItem({
           <Text style={styles.price}>${product.quantity! * product.price}</Text>
         </View>
         <View style={styles.productActions}>
-          <View style={styles.actions} >
+          <View style={styles.actions}>
             {/* Disminuir cantidad */}
             <TouchableOpacity
               onPress={() => subtractItem(product)}
@@ -49,12 +49,11 @@ export default function ShoppingBagItem({
               <Text style={styles.actionText}>+</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-          onPress={() => deleteItem(product)}
-          >
-                <Image
-                style={styles.deleteItem}
-                source={require('../../../../../assets/trash.png')} />
+          <TouchableOpacity onPress={() => deleteItem(product)}>
+            <Image
+              style={styles.deleteItem}
+              source={require("../../../../../assets/trash.png")}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -111,7 +110,7 @@ const styles = StyleSheet.create({
   },
 
   actionLess: {
-    backgroundColor: MyColors.gris_muy_claro,
+    backgroundColor: MyColors.grayVeryLight,
     padding: 8,
     alignSelf: "center",
     borderTopLeftRadius: 10,
@@ -119,13 +118,13 @@ const styles = StyleSheet.create({
   },
 
   quantity: {
-    backgroundColor: MyColors.gris_muy_claro,
+    backgroundColor: MyColors.grayVeryLight,
     paddingHorizontal: 14,
     paddingVertical: 8,
     alignSelf: "center",
   },
   actionAdd: {
-    backgroundColor: MyColors.gris_muy_claro,
+    backgroundColor: MyColors.grayVeryLight,
     padding: 8,
     alignSelf: "center",
     borderTopRightRadius: 10,
@@ -133,14 +132,12 @@ const styles = StyleSheet.create({
   },
 
   actions: {
-        flexDirection: 'row',
-        flex: 1
-
+    flexDirection: "row",
+    flex: 1,
   },
- deleteItem: {
-        width: 25,
-        height: 22,
-        marginTop: 5,
- }
-
+  deleteItem: {
+    width: 25,
+    height: 22,
+    marginTop: 5,
+  },
 });

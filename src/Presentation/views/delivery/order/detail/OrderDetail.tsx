@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { FlatList, Image, Text, ToastAndroid, View } from "react-native";
 import styles from "./Styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AdminOrderStackParamList } from "../../../../navigator/AdminOrderStackNavigator";
 import OrderDetailItem from "./Item";
 import dateFormatter from "../../../../../utils/dateFormatter";
 import useDeliveryOrderDetailViewModel from "./ViewModel";
 import RoundedButton from "../../../../components/RoundedButton";
-import { DeliveryOrderStackParamList } from "../../../../navigator/DeliveryOrderStackNavigator";
+import { DeliveryOrderStackParamList } from "../../../../navigator/delivery-navigator/DeliveryOrderStackNavigator";
+
 
 interface Props
   extends NativeStackScreenProps<

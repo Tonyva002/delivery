@@ -17,8 +17,8 @@ import RoundedButton from "../../../../components/RoundedButton";
 import { ModalPickImage } from "../../../../components/ModalPickImage";
 import { MyColors, MyStyles } from "../../../../theme/AppTheme";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { CategoryStackParamList } from "../../../../navigator/AdminCategoryStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
+import { CategoryStackParamList } from "../../../../navigator/admin-navigator/AdminCategoryStackNavigator";
 
 interface Props extends NativeStackScreenProps<
   CategoryStackParamList,
@@ -89,7 +89,7 @@ export default function AdminCategoryUpdateScreen({
 
           <View style={styles.form}>
             <CustomTextInput
-              placeholder="Nombre de la categoría"
+              placeholder="Nombre de la categoria"
               image={require("../../../../../../assets/categories.png")}
               keyboardtype="default"
               property="name"

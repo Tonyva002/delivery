@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { Image, Text, ToastAndroid, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import styles from "./Styles";
-import stylesMap from "./StylesMap";
 import useCustomerAddressMapViewModel from "./ViewModel";
 import RoundedButton from "../../../../components/RoundedButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { CustomerAddressStackParamList } from "../../../../navigator/CustomerAddressStackNavigator";
+import { CustomerAddressStackParamList } from "../../../../navigator/customer-navigator/CustomerAddressStackNavigator";
 
-interface Prpops
+
+interface Props
   extends NativeStackScreenProps<
     CustomerAddressStackParamList,
     "CustomerAddressMapScreen"
@@ -17,7 +17,7 @@ interface Prpops
 export default function CustomerAddressMapScreen({
   navigation,
   route,
-}: Prpops) {
+}: Props) {
   const {
     mapRef,
     messagePermission,
@@ -64,8 +64,8 @@ export default function CustomerAddressMapScreen({
         <RoundedButton
           text="SELECCIONAR PUNTO"
           onPress={() => {
-            setAddress(name, latitude, longitude); // guardas en contexto
-            navigation.goBack(); // vuelves sin recreate
+            setAddress(name, latitude, longitude); // guarda en contexto
+            navigation.goBack(); // vuelve sin recreate
           }}
         />
       </View>

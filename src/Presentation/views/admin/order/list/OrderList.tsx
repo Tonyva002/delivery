@@ -1,6 +1,12 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React, { useEffect } from "react";
-import { View, StatusBar, useWindowDimensions, FlatList, Text } from "react-native";
+import {
+  View,
+  StatusBar,
+  useWindowDimensions,
+  FlatList,
+  Text,
+} from "react-native";
 import useAdminOrderViewModel from "./ViewModel";
 import { TabView, TabBar } from "react-native-tab-view";
 import { MyColors } from "../../../../theme/AppTheme";
@@ -8,10 +14,15 @@ import OrderListItem from "./Item";
 
 interface Props {
   status: string;
-  
 }
 function OrderListView({ status }: Props) {
-  const { ordersPayed, ordersDispatched, ordersOnTheWay, ordersDelivery, getOrders } = useAdminOrderViewModel();
+  const {
+    ordersPayed,
+    ordersDispatched,
+    ordersOnTheWay,
+    ordersDelivery,
+    getOrders,
+  } = useAdminOrderViewModel();
 
   //Estado de la status bar
   useFocusEffect(
@@ -19,7 +30,7 @@ function OrderListView({ status }: Props) {
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   useEffect(() => {
@@ -28,21 +39,21 @@ function OrderListView({ status }: Props) {
 
   return (
     <View>
-      <FlatList 
-      data={
-        status === 'PAGADO'
-        ? ordersPayed
-        : status === 'DESPACHADO'
-        ? ordersDispatched
-        : status === 'EN CAMINO'
-        ? ordersOnTheWay
-        : status === 'ENTREGADO'
-        ? ordersDelivery
-        : []
-      }
-      keyExtractor={(item) => item.id!}
-      renderItem={({item}) => <OrderListItem order={item} />}
-       />
+      <FlatList
+        data={
+          status === "PAGADO"
+            ? ordersPayed
+            : status === "DESPACHADO"
+              ? ordersDispatched
+              : status === "EN CAMINO"
+                ? ordersOnTheWay
+                : status === "ENTREGADO"
+                  ? ordersDelivery
+                  : []
+        }
+        keyExtractor={(item) => item.id!}
+        renderItem={({ item }) => <OrderListItem order={item} />}
+      />
     </View>
   );
 }
@@ -79,7 +90,7 @@ export default function AdminOrderListScreen() {
 
   return (
     <TabView
-      style={{ backgroundColor: 'white' }}
+      style={{ backgroundColor: "white" }}
       navigationState={{ index, routes }}
       renderScene={renderScene}
       onIndexChange={setIndex}
@@ -87,7 +98,7 @@ export default function AdminOrderListScreen() {
       renderTabBar={(props) => (
         <TabBar
           {...props}
-          indicatorStyle={{ backgroundColor: MyColors.gris_claro }}
+          indicatorStyle={{ backgroundColor: MyColors.grayLight }}
           activeColor="black"
           inactiveColor="gray"
           scrollEnabled={true}

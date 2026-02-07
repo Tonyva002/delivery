@@ -4,15 +4,16 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { MyColors } from "../../../../theme/AppTheme";
 import dateFormatter from "../../../../../utils/dateFormatter";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { AdminOrderStackParamList } from "../../../../navigator/AdminOrderStackNavigator";
 import { useNavigation } from "@react-navigation/native";
+import { AdminOrderStackParamList } from "../../../../navigator/admin-navigator/AdminOrderStackNavigator";
 
 interface Props {
   order: Order;
 }
 
 export default function OrderListItem({ order }: Props) {
-  const navigation = useNavigation<NativeStackNavigationProp<AdminOrderStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<AdminOrderStackParamList>>();
 
   return (
     <TouchableOpacity
@@ -20,8 +21,12 @@ export default function OrderListItem({ order }: Props) {
     >
       <View style={styles.container}>
         <Text style={styles.order}>Orden #{order.id}</Text>
-        <Text style={styles.info}>Fecha del pedido {dateFormatter(order.timestamp!)}</Text>
-        <Text style={styles.info}>Cliente {order.customer?.name} {order.customer?.lastname}</Text>
+        <Text style={styles.info}>
+          Fecha del pedido {dateFormatter(order.timestamp!)}
+        </Text>
+        <Text style={styles.info}>
+          Cliente {order.customer?.name} {order.customer?.lastname}
+        </Text>
         <Text style={styles.info}>Direccion {order.address?.address}</Text>
         <Text style={styles.info}>Localidad {order.address?.neighborhood}</Text>
 
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     width: "100%",
-    backgroundColor: MyColors.gris_claro,
+    backgroundColor: MyColors.grayLight,
     marginTop: 8,
   },
 });

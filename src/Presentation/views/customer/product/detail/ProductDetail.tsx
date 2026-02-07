@@ -41,7 +41,7 @@ export default function CustomerProductDetailScreen({
   } = useCustomerProductDetailViewModel(product);
 
   const width = Dimensions.get("window").width;
-  const heigth = Dimensions.get("window").height;
+  const height = Dimensions.get("window").height;
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
 
@@ -68,7 +68,7 @@ export default function CustomerProductDetailScreen({
         <Carousel
           ref={ref}
           width={width}
-          height={heigth}
+          height={height}
           autoPlay={true}
           autoPlayInterval={10000}
           scrollAnimationDuration={800}

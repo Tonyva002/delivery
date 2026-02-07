@@ -22,7 +22,7 @@ const CustomerProductDetailStyles = StyleSheet.create({
 
   divider: {
     height: 1,
-    backgroundColor: MyColors.gris_muy_claro,
+    backgroundColor: MyColors.grayVeryLight,
     marginTop: 15,
   },
 
@@ -48,7 +48,7 @@ const CustomerProductDetailStyles = StyleSheet.create({
   actionsContainer: {
     flexDirection: "row",
     height: 70,
-    backgroundColor: MyColors.gris_casi_blanco,
+    backgroundColor: MyColors.background,
     paddingHorizontal: 30,
   },
 
@@ -58,7 +58,7 @@ const CustomerProductDetailStyles = StyleSheet.create({
   },
 
   actionLess: {
-    backgroundColor: MyColors.gris_oscuro,
+    backgroundColor: MyColors.grayDarker,
     padding: 10,
     alignSelf: "center",
     borderTopLeftRadius: 10,
@@ -66,13 +66,13 @@ const CustomerProductDetailStyles = StyleSheet.create({
   },
 
   quantity: {
-    backgroundColor: MyColors.gris_oscuro,
+    backgroundColor: MyColors.grayDarker,
     paddingHorizontal: 15,
     paddingVertical: 10,
     alignSelf: "center",
   },
   actionAdd: {
-    backgroundColor: MyColors.gris_oscuro,
+    backgroundColor: MyColors.grayDarker,
     padding: 10,
     alignSelf: "center",
     borderTopRightRadius: 10,

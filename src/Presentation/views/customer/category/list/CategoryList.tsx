@@ -25,7 +25,7 @@ export default function CustomerCategoryListScreen({
   const { categories, getCategories } = useCustomerCategoryListViewModel();
 
   const width = Dimensions.get("window").width;
-  const heigth = Dimensions.get("window").height;
+  const height = Dimensions.get("window").height;
 
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
@@ -59,19 +59,19 @@ export default function CustomerCategoryListScreen({
         style={{
           position: "absolute",
           alignSelf: "center",
-          top: heigth * 0.1,
+          top: height * 0.1,
         }}
       >
         <Carousel
           ref={ref}
           width={width}
-          height={heigth * 0.6}
+          height={height * 0.6}
           data={safeCategories}
           onProgressChange={progress}
           renderItem={({ item }) => (
             <CustomerCategoryItem
               category={item}
-              height={heigth * 0.62}
+              height={height * 0.62}
               width={width - 70}
               navigation={navigation}
             />

@@ -7,29 +7,29 @@ interface Props {
 }
 
 export default function OrderDetailItem({product}: Props) {
-  return (
-    <View style={styles.container}>
+return (
+<View style={styles.container}>
         <Image
-          source={{uri: product.image1}}
-          style={styles.image}
-         />
+        source={{uri: product.image1}}
+        style={styles.image}
+        />
 
-         <View style={styles.productInfo}>
+        <View style={styles.productInfo}>
                 <Text style={styles.name}>{product.name}</Text>
                 <Text style={styles.quantity}>Cantidad: {product.quantity}</Text>
-         </View>
+        </View>
 
-    </View>
-  )
+</View>
+)
 }
 
 const styles = StyleSheet.create({
         container: {
-                flexDirection: 'row',
-                marginTop: 10,
-                paddingHorizontal: 16,
-                alignItems: 'center',
-              
+        flexDirection: 'row',
+        marginTop: 10,
+        paddingHorizontal: 16,
+        alignItems: 'center',
+        
 
         },
 

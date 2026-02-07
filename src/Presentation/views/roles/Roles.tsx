@@ -18,7 +18,7 @@ type RolesScreenProps = {
 export default function RolesScreen({ navigation }: RolesScreenProps) {
   const { user } = useRolesViewModel();
   const width = Dimensions.get("window").width;
-  const heigth = Dimensions.get("window").height;
+  const height = Dimensions.get("window").height;
 
   const ref = React.useRef<ICarouselInstance>(null);
   const progress = useSharedValue<number>(0);
@@ -36,7 +36,7 @@ export default function RolesScreen({ navigation }: RolesScreenProps) {
         <Carousel
           ref={ref}
           width={width}
-          height={heigth / 2}
+          height={height / 2}
           data={user?.roles || []}
           onProgressChange={progress}
           renderItem={({ item }) => (

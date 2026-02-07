@@ -31,12 +31,12 @@ export default function CustomerAddressListScreen() {
         address={item} 
         checked={checked}
         changeRadioValue={changeRadioValue} />}
-         />
-         
+          />
+          
 
-         <View style={{width: '100%', padding: 20, position: 'absolute', bottom: 10,}}>
-          <RoundedButton text='CONTINUAR' onPress={() => createOrder()} />
-         </View>
+          <View style={{width: '100%', padding: 20, position: 'absolute', bottom: 10,}}>
+            <RoundedButton text='CONTINUAR' onPress={() => createOrder()} />
+          </View>
     </View>
   )
 }

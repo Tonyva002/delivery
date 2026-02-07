@@ -25,7 +25,7 @@ function OrderListView({ status }: Props) {
       StatusBar.setBarStyle("dark-content");
       StatusBar.setBackgroundColor("transparent");
       StatusBar.setTranslucent(true);
-    }, [])
+    }, []),
   );
 
   useEffect(() => {
@@ -39,10 +39,10 @@ function OrderListView({ status }: Props) {
           status === "DESPACHADO"
             ? ordersDispatched
             : status === "EN CAMINO"
-            ? ordersOnTheWay
-            : status === "ENTREGADO"
-            ? ordersDelivery
-            : []
+              ? ordersOnTheWay
+              : status === "ENTREGADO"
+                ? ordersDelivery
+                : []
         }
         keyExtractor={(item) => item.id!}
         renderItem={({ item }) => <OrderListItem order={item} />}
@@ -53,7 +53,6 @@ function OrderListView({ status }: Props) {
 
 const renderScene = ({ route }: any) => {
   switch (route.key) {
-
     case "first":
       return <OrderListView status="DESPACHADO" />;
 
@@ -88,7 +87,7 @@ export default function DeliveryOrderListScreen() {
       renderTabBar={(props) => (
         <TabBar
           {...props}
-          indicatorStyle={{ backgroundColor: MyColors.gris_claro }}
+          indicatorStyle={{ backgroundColor: MyColors.grayLight }}
           activeColor="black"
           inactiveColor="gray"
           scrollEnabled={true}

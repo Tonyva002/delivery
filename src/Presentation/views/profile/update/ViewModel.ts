@@ -12,7 +12,7 @@ export default function useProfileUpdateViewModel(user: User) {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [values, setValues] = useState(user);
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [file, setfile] = useState<ImagePicker.ImagePickerAsset>();
   const { saveUserSesion } = useContext(UserContext);
 
@@ -33,7 +33,7 @@ export default function useProfileUpdateViewModel(user: User) {
   // Metodo para actualizar usuario
   const update = async () => {
     if (isValidForm()) {
-      setloading(true);
+      setLoading(true);
       let response = {} as ResponseApiDelivery;
 
       if (values.image?.includes("https://")) {
@@ -42,7 +42,7 @@ export default function useProfileUpdateViewModel(user: User) {
         response = await updateUserWithImageUseCase(values, file!);
       }
 
-      setloading(false);
+      setLoading(false);
       console.log("Usuario actualizado:" + JSON.stringify(response));
 
       if (response.success) {

@@ -9,11 +9,11 @@ const CustomerShoppingBagStyles = StyleSheet.create({
   totalToPayContainer: {
     flexDirection: "row",
     height: 70,
-    backgroundColor: MyColors.gris_muy_claro,
+    backgroundColor: MyColors.grayVeryLight,
     justifyContent: "space-around",
     alignItems: "center",
     paddingHorizontal: 30,
-     marginBottom:105
+    marginBottom: 105,
   },
   totalInfo: {
     alignItems: "center",

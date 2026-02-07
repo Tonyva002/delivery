@@ -78,7 +78,7 @@ export default function AdminCategoryCreateScreen() {
 
           <View style={styles.form}>
             <CustomTextInput
-              placeholder="Nombre de la categoría"
+              placeholder="Nombre de la categoria"
               image={require("../../../../../../assets/categories.png")}
               keyboardtype="default"
               property="name"

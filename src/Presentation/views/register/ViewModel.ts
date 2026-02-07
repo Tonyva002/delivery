@@ -19,7 +19,7 @@ const [values, setValues] = useState({
     confirmPassword: '',
 });
 
-const [loading, setloading] = useState(false);
+const [loading, setLoading] = useState(false);
 const [file, setfile] = useState<ImagePicker.ImagePickerAsset>();
 const { user, getUserSesion, saveUserSesion } = useContext(UserContext);
 
@@ -39,9 +39,9 @@ const pickImage = async () => {
 
 const register = async () => {
   if(isValidForm()) {
-    setloading(true);
+    setLoading(true);
     const response = await RegisterWithImageAuthUserCase(values, file!);
-    setloading(false);
+    setLoading(false);
   
     if(response.success){
       await saveUserSesion(response.data);

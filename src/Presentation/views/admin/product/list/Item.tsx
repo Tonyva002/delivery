@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
 
   divide: {
     height: 1,
-    backgroundColor: MyColors.gris_muy_claro,
+    backgroundColor: MyColors.grayVeryLight,
     marginHorizontal: 20,
   },
 });
