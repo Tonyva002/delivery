@@ -66,7 +66,7 @@ Visual Studio Code
 ### 8. Pantalla de carrito de compras
 ![Screen 8](https://github.com/user-attachments/assets/8dacc296-b726-4748-9b69-8c5ef5380a03)
 
-### 9. Pantalla de agregar direcciones
+### 9. Pantalla de direcciones
 ![Screen 9](https://github.com/user-attachments/assets/faf86ae1-8fb9-4717-b8d4-1ac7d23bf4ad)
 
 ### 10. Pantalla de agregar direcciones
