@@ -6,10 +6,10 @@ import CustomerAddressStackNavigator, {
   CustomerAddressStackParamList,
 } from "./CustomerAddressStackNavigator";
 import { NavigatorScreenParams } from "@react-navigation/native";
-import CustomerCategoryListScreen from "../../views/customer/category/list/CategoryList";
-import CustomerProductListScreen from "../../views/customer/product/list/ProductList";
-import CustomerProductDetailScreen from "../../views/customer/product/detail/ProductDetail";
-import CustomerShoppingBagScreen from "../../views/customer/shopping/ShoppingBag";
+import CustomerCategoryListScreen from "../../views/customer/category/list/CategoryListScreen";
+import CustomerProductListScreen from "../../views/customer/product/list/ProductListScreen";
+import CustomerProductDetailScreen from "../../views/customer/product/detail/ProductDetailScreen";
+import CustomerShoppingBagScreen from "../../views/customer/shopping/ShoppingBagScreen";
 
 export type ClientStackParamList = {
   CustomerCategoryListScreen: undefined;

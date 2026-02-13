@@ -1,10 +1,10 @@
 import React from "react";
 import { User } from "../../../Domain/entities/User";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "../../views/login/Login";
-import RegisterScreen from "../../views/register/Register";
-import ProfileUpdateScreen from "../../views/profile/update/ProfileUpdate";
-import RolesScreen from "../../views/roles/Roles";
+import LoginScreen from "../../views/login/LoginScreen";
+import RegisterScreen from "../../views/register/RegisterScreen";
+import UpdateProfileScreen from "../../views/profile/update/UpdateProfileScreen";
+import RolesScreen from "../../views/roles/RolesScreen";
 import { UserProvider } from "../../context/UserContext";
 import AdminTabsNavigator from "../admin-navigator/AdminTabsNavigator";
 import DeliveryTabsNavigator from "../delivery-navigator/DeliveryTabsNavigator";
@@ -72,7 +72,7 @@ export default function MainStackNavigator() {
 
         <Stack.Screen
           name="ProfileUpdateScreen"
-          component={ProfileUpdateScreen}
+          component={UpdateProfileScreen}
           options={{
             headerShown: true,
             title: "Actualizar usuario",

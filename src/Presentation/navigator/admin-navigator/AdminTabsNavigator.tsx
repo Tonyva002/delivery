@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfo";
+import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfoScreen";
 import { Image } from "react-native";
 import AdminCategoryStackNavigator from "./AdminCategoryStackNavigator";
 import AdminOrderStackNavigator from "./AdminOrderStackNavigator";

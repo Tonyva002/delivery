@@ -3,14 +3,14 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
-import AdminProductListScreen from "../../views/admin/product/list/ProductList";
+import AdminProductListScreen from "../../views/admin/product/list/ProductListScreen";
 import { Category } from "../../../Domain/entities/Category";
 import { StackScreenProps } from "@react-navigation/stack";
 import { CategoryStackParamList } from "./AdminCategoryStackNavigator";
-import AdminProductCreateScreen from "../../views/admin/product/create/ProductCreate";
+import AdminCreateProductScreen from "../../views/admin/product/create/CreateProductScreen";
 import { Image, TouchableOpacity } from "react-native";
 import { ProductProvider } from "../../context/ProductContext";
-import AdminProductUpdateScreen from "../../views/admin/product/update/ProductUpdate";
+import AdminUpdateProductScreen from "../../views/admin/product/update/UpdateProductScreen";
 import { Product } from "../../../Domain/entities/Product";
 
 export type ProductStackParamList = {
@@ -65,7 +65,7 @@ export default function AdminProductStackNavigator({ route }: Props) {
 
         <Stack.Screen
           name="AdminProductCreateScreen"
-          component={AdminProductCreateScreen}
+          component={AdminCreateProductScreen}
           initialParams={{ category }}
           options={{
             title: "Nuevo producto",
@@ -75,7 +75,7 @@ export default function AdminProductStackNavigator({ route }: Props) {
 
         <Stack.Screen
           name="AdminProductUpdateScreen"
-          component={AdminProductUpdateScreen}
+          component={AdminUpdateProductScreen}
           options={{
             title: "Actualizar producto",
             headerShown: true,

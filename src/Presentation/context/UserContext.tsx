@@ -1,8 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
 import { User } from "../../Domain/entities/User";
-import { GetUserLocalUseCase } from "../../Domain/useCase/userLocal/GetUserLocal";
-import { SaveUserLocalUseCase } from "../../Domain/useCase/userLocal/SaveUserLocal";
-import { RemoveUserLocalUseCase } from "../../Domain/useCase/userLocal/RemoveUserLocal";
+import {
+  getUserLocalUseCase,
+  removeUserLocalUseCase,
+  saveUserLocalUseCase,
+} from "../../core/di/UserLocalContainer";
 
 export const userInitialState: User = {
   id: "",
@@ -34,17 +36,22 @@ export const UserProvider = ({ children }: any) => {
   }, []);
 
   const getUserSesion = async () => {
-    const user = await GetUserLocalUseCase();
-    setUser(user);
+    const user = await getUserLocalUseCase.execute();
+
+    if (user) {
+      setUser(user);
+    } else {
+      setUser(userInitialState);
+    }
   };
 
   const saveUserSesion = async (user: User) => {
-    await SaveUserLocalUseCase(user);
+    await saveUserLocalUseCase.execute(user);
     setUser(user);
   };
 
   const removeUserSesion = async () => {
-    await RemoveUserLocalUseCase();
+    await removeUserLocalUseCase.execute();
     setUser(userInitialState);
   };
 
@@ -61,4 +68,3 @@ export const UserProvider = ({ children }: any) => {
     </UserContext.Provider>
   );
 };
-

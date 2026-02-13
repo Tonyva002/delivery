@@ -1,11 +1,11 @@
 import React from "react";
 import { Category } from "../../../../../Domain/entities/Category";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
 import { MyColors } from "../../../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { CategoryStackParamList } from "../../../../navigator/admin-navigator/AdminCategoryStackNavigator";
-
 
 interface Props {
   category: Category;
@@ -25,7 +25,14 @@ export default function AdminCategoryListItem({ category, remove }: Props) {
       }
     >
       <View style={styles.container}>
-        <Image style={styles.image} source={{ uri: category.image }} />
+        <Image
+          style={styles.image}
+          source={{ uri: category.image }}
+          contentFit="cover"
+          transition={300}
+          cachePolicy={"memory-disk"}
+          placeholder={require("../../../../../../assets/placeholder.png")}
+        />
 
         <View style={styles.info}>
           <Text style={styles.title}>{category.name}</Text>

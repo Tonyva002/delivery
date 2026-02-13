@@ -3,11 +3,10 @@ import { Image, TouchableOpacity } from "react-native";
 import { Category } from "../../../Domain/entities/Category";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { CategoryProvider } from "../../context/CategoryContext";
-import AdminCategoryUpdateScreen from "../../views/admin/category/update/CategoryUpdate";
-import AdminCategoryCreateScreen from "../../views/admin/category/create/CategoryCreate";
+import AdminUpdateCategoryScreen from "../../views/admin/category/update/UpdateCategoryScreen";
+import AdminCreateCategoryScreen from "../../views/admin/category/create/CreateCategoryScreen";
 import AdminProductStackNavigator from "./AdminProductStackNavigator";
-import AdminCategoryListScreen from "../../views/admin/category/list/CategoryList";
-
+import AdminCategoryListScreen from "../../views/admin/category/list/CategoryListScreen";
 
 export type CategoryStackParamList = {
   AdminCategoryListScreen: undefined;
@@ -47,7 +46,7 @@ export default function AdminCategoryStackNavigator() {
         />
         <Stack.Screen
           name="AdminCategoryCreateScreen"
-          component={AdminCategoryCreateScreen}
+          component={AdminCreateCategoryScreen}
           options={{
             headerShown: true,
             title: "Nueva categoria",
@@ -56,19 +55,19 @@ export default function AdminCategoryStackNavigator() {
 
         <Stack.Screen
           name="AdminCategoryUpdateScreen"
-          component={AdminCategoryUpdateScreen}
+          component={AdminUpdateCategoryScreen}
           options={{
             headerShown: true,
             title: "Actualizar categoria",
           }}
         />
 
-         <Stack.Screen
+        <Stack.Screen
           name="AdminProductStackNavigator"
           component={AdminProductStackNavigator}
           options={{
-            headerShown: false
-          }} 
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </CategoryState>

@@ -8,14 +8,16 @@ import {
 import { ImagePickerAsset } from "expo-image-picker";
 import mime from "mime";
 import { handleAxiosError } from "../../utils/handleAxiosError";
+import { Response } from "../../Domain/models/Response";
+import { ResponseApiMapper } from "../mappers/ResponseApiMapper";
 
 export class CategoryRepositoryImp implements CategoryRepository {
   
-  //Metodo para listar las categorias
+  //Listar las categorias
   async getAll(): Promise<Category[]> {
     try {
       const response = await ApiDelivery.get<Category[]>("/categories/getAll");
-      return Promise.resolve(response.data);
+      return response.data;
 
     } catch (error) {
       handleAxiosError(error, "Error al listar la categoría");
@@ -23,8 +25,8 @@ export class CategoryRepositoryImp implements CategoryRepository {
     }
   }
 
-  // Metodo para crear categoria
-  async create(category: Category, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
+  // Crear categoria
+  async create(category: Category, file: ImagePickerAsset): Promise<Response> {
     try {
       const formData = new FormData();
       const fileUri = file.uri;
@@ -40,20 +42,21 @@ export class CategoryRepositoryImp implements CategoryRepository {
       formData.append("category", JSON.stringify(category));
       
       const response = await ApiDeliveryForImage.post<ResponseApiDelivery>("/categories/create", formData);
-      return response.data;
+      return ResponseApiMapper.toDomain(response.data);
 
     } catch (error) {
-      return handleAxiosError(error, "Error al crear categoría");
+      const apiError = handleAxiosError(error, "Error al crear categoría");
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 
-  // Metodo para actualizar categoria con imagen
-  async updateWithImage(category: Category, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
+  // Actualizar categoria con imagen
+  async updateWithImage(category: Category, file: ImagePickerAsset): Promise<Response> {
     try {
       const formData = new FormData();
       const fileUri = file.uri;
-      const fileName = fileUri.split("/").pop() || "image.jpg";
-      const fileType = mime.getType(fileUri) || "image/jpeg";
+      const fileName = fileUri.split("/").pop() ?? "image.jpg";
+      const fileType = mime.getType(fileUri) ?? "image/jpeg";
 
       formData.append("image", {
         uri: fileUri,
@@ -63,32 +66,35 @@ export class CategoryRepositoryImp implements CategoryRepository {
 
       formData.append("category", JSON.stringify(category));
       const response = await ApiDeliveryForImage.put<ResponseApiDelivery>("/categories/updateWithImage", formData);
-      return response.data;
+      return ResponseApiMapper.toDomain(response.data);
 
     } catch (error) {
-      return handleAxiosError(error, "Error al actualizar la categoría");
+      const apiError = handleAxiosError(error, "Error al actualizar la categoría");
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 
-  // Metodo para actualizar la categoria sin imagen
-  async updateWithoutImage(category: Category): Promise<ResponseApiDelivery> {
+  // Actualizar la categoria sin imagen
+  async updateWithoutImage(category: Category): Promise<Response> {
     try {
       const response = await ApiDelivery.put<ResponseApiDelivery>("/categories/updateWithoutImage", category);
-      return Promise.resolve(response.data);
+      return ResponseApiMapper.toDomain(response.data);
 
     } catch (error) {
-      return handleAxiosError(error, "Error al actualizar la categoría");
+      const apiError =  handleAxiosError(error, "Error al actualizar la categoría");
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 
-  // Metodo para eliminar categoria
-  async remove(id: string): Promise<ResponseApiDelivery> {
+  // Eliminar categoria
+  async remove(id: string): Promise<Response> {
     try {
       const response = await ApiDelivery.delete<ResponseApiDelivery>( `/categories/delete/${id}`);
-      return Promise.resolve(response.data);
+      return ResponseApiMapper.toDomain(response.data);
 
     } catch (error) {
-      return handleAxiosError(error, "Error al eliminar la categoría");
+      const apiError = handleAxiosError(error, "Error al eliminar la categoría");
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 }

@@ -1,17 +1,15 @@
 import React from "react";
-import { createNativeStackNavigator} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Image, TouchableOpacity } from "react-native";
 import { AddressProvider } from "../../context/AddressContext";
-import CustomerAddressListScreen from "../../views/customer/address/list/AddressList";
-import CustomerAddressCreateScreen from "../../views/customer/address/create/AddressCreate";
-import CustomerAddressMapScreen from "../../views/customer/address/map/AddressMap";
-
-
+import CustomerAddressListScreen from "../../views/customer/address/list/AddressListScreen";
+import CustomerCreateAddressScreen from "../../views/customer/address/create/CreateAddressScreen";
+import CustomerMapAddressScreen from "../../views/customer/address/map/MapAddressScreen";
 
 export type CustomerAddressStackParamList = {
-   CustomerAddressListScreen: undefined;
-   CustomerAddressCreateScreen: undefined;
-   CustomerAddressMapScreen: undefined;
+  CustomerAddressListScreen: undefined;
+  CustomerAddressCreateScreen: undefined;
+  CustomerAddressMapScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<CustomerAddressStackParamList>();
@@ -25,7 +23,7 @@ export default function CustomerAddressStackNavigator() {
   return (
     <AddressState>
       <Stack.Navigator>
-       <Stack.Screen
+        <Stack.Screen
           name="CustomerAddressListScreen"
           component={CustomerAddressListScreen}
           options={({ navigation }) => ({
@@ -33,7 +31,9 @@ export default function CustomerAddressStackNavigator() {
             title: "Mis direcciones",
             headerRight: () => (
               <TouchableOpacity
-                onPress={() => navigation.navigate("CustomerAddressCreateScreen")}
+                onPress={() =>
+                  navigation.navigate("CustomerAddressCreateScreen")
+                }
               >
                 <Image
                   source={require("../../../../assets/add.png")}
@@ -46,7 +46,7 @@ export default function CustomerAddressStackNavigator() {
 
         <Stack.Screen
           name="CustomerAddressCreateScreen"
-          component={CustomerAddressCreateScreen}
+          component={CustomerCreateAddressScreen}
           options={{
             headerShown: true,
             title: "Nueva direccion",
@@ -55,7 +55,7 @@ export default function CustomerAddressStackNavigator() {
 
         <Stack.Screen
           name="CustomerAddressMapScreen"
-          component={CustomerAddressMapScreen}
+          component={CustomerMapAddressScreen}
           options={{
             headerShown: true,
             title: "Ubica tu direccion en el Mapa",

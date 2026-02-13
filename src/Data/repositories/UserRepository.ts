@@ -8,36 +8,42 @@ import {
 } from "../sources/remote/ApiDelivery";
 import mime from "mime";
 import { handleAxiosError } from "../../utils/handleAxiosError";
+import { Response } from "../../Domain/models/Response";
+import { ResponseApiMapper } from "../mappers/ResponseApiMapper";
 
 export class UserRepositoryImpl implements UserRepository {
-
-
   async getDelivery(): Promise<User[]> {
     try {
-      const response = await ApiDelivery.get<User[]>('/users/findByDelivery');
-      return Promise.resolve(response.data);
-      
+      const response = await ApiDelivery.get<User[]>("/users/findByDelivery");
+      return response.data;
     } catch (error) {
-     handleAxiosError(error, "Error al actualizar usuario sin imagen");
-     return Promise.resolve([])
+      handleAxiosError(error, "Error al obtener usuarios delivery");
+      return [];
     }
-      
-    }
-
+  }
 
   // Metodo para actualizar usuario sin imagen
-  async updateWithoutImage(user: User): Promise<ResponseApiDelivery> {
+  async updateUser(user: User): Promise<Response> {
     try {
-      const response = await ApiDelivery.put<ResponseApiDelivery>("/users/updateWithoutImage", user);
-      return Promise.resolve(response.data);
-
+      const response = await ApiDelivery.put<ResponseApiDelivery>(
+        "/users/updateWithoutImage",
+        user,
+      );
+      return ResponseApiMapper.toDomain(response.data);
     } catch (error) {
-      return handleAxiosError(error, "Error al actualizar usuario sin imagen");
+      const apiError = handleAxiosError(
+        error,
+        "Error al actualizar usuario sin imagen",
+      );
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 
   // Metodo para actualizar usuario con imagen
-  async updateWithImage(user: User, file: ImagePickerAsset): Promise<ResponseApiDelivery> {
+  async updateUserWithImage(
+    user: User,
+    file: ImagePickerAsset,
+  ): Promise<Response> {
     try {
       if (!file?.uri) {
         throw new Error("La imagen seleccionada no es válida.");
@@ -51,15 +57,21 @@ export class UserRepositoryImpl implements UserRepository {
         uri: file.uri,
         name: filename,
         type: fileType,
-      } as any); 
+      } as any);
 
       formData.append("user", JSON.stringify(user));
 
-      const { data } = await ApiDeliveryForImage.put<ResponseApiDelivery>("/users/updateWithImage", formData);
-      return data;
-      
+      const { data } = await ApiDeliveryForImage.put<ResponseApiDelivery>(
+        "/users/updateWithImage",
+        formData,
+      );
+      return ResponseApiMapper.toDomain(data);
     } catch (error) {
-      return handleAxiosError(error, "Error al actualizar usuario con imagen");
+      const apiError = handleAxiosError(
+        error,
+        "Error al actualizar usuario con imagen",
+      );
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 }

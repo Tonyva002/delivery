@@ -1,107 +1,115 @@
+import mime from "mime";
 import { ImagePickerAsset } from "expo-image-picker";
+
 import { Product } from "../../Domain/entities/Product";
 import { ProductRepository } from "../../Domain/repositories/ProductRepository";
+import { Response } from "../../Domain/models/Response";
+
+import {
+  ApiDelivery,
+  ApiDeliveryForImage,
+} from "../sources/remote/ApiDelivery";
 import { ResponseApiDelivery } from "../sources/models/ResponseApiDelivery";
+import { ResponseApiMapper } from "../mappers/ResponseApiMapper";
+
 import { handleAxiosError } from "../../utils/handleAxiosError";
-import mime from "mime";
-import { ApiDelivery, ApiDeliveryForImage } from "../sources/remote/ApiDelivery";
-import { AxiosError } from 'axios';
 
 export class ProductRepositoryImp implements ProductRepository {
-
-  
- //Metodo para obtener productos por categoria 
- async getProductByCategory(id_category: string): Promise<Product[]> {
-   try {
-    const response = await ApiDelivery.get<Product[]>(`/products/findByCategory/${id_category}`);
-    return Promise.resolve(response.data);
-    
-   } catch (error) {
-    let e = (error as AxiosError);
-    console.log("ERROR: "  + JSON.stringify(e.response?.data));
-     return Promise.resolve([]);
-   }
-  };
-
-
-
-  //Metodo para crear producto      
-  async create(product: Product, files: ImagePickerAsset[]): Promise<ResponseApiDelivery> {
+  //Metodo para obtener productos por categoria
+  async getProductByCategory(id_category: string): Promise<Product[]> {
     try {
-      const formData = new FormData();
-
-      files.forEach((file) => {
-        const fileUri = file.uri;
-        const fileName = fileUri.split("/").pop() || "image.jpg";
-        const fileType = mime.getType(fileUri) || "image/jpeg";
-
-        formData.append("image", {
-          uri: fileUri,
-          name: fileName,
-          type: fileType,
-        } as any);
-      });
-
-      formData.append("product", JSON.stringify(product));
-
-      const response = await ApiDeliveryForImage.post<ResponseApiDelivery>(
-        "/products/create",
-        formData
+      const response = await ApiDelivery.get<Product[]>(
+        `/products/findByCategory/${id_category}`,
       );
       return response.data;
     } catch (error) {
-      return handleAxiosError(error, "Error al crear el producto");
-    }
-  };
-  
-  //Metodo para actualizar productos con imagen
-  async updateWithImage(product: Product, files: ImagePickerAsset[]): Promise<ResponseApiDelivery> {
-    try {
-      const formData = new FormData();
-
-      files.forEach((file) => {
-        const fileUri = file.uri;
-        const fileName = fileUri.split("/").pop() || "image.jpg";
-        const fileType = mime.getType(fileUri) || "image/jpeg";
-
-        formData.append("image", {
-          uri: fileUri,
-          name: fileName,
-          type: fileType,
-        } as any);
-      });
-
-      formData.append("product", JSON.stringify(product));
-
-      const response = await ApiDeliveryForImage.put<ResponseApiDelivery>( "/products/updateWithImage", formData);
-      return response.data;
-    } catch (error) {
-      return handleAxiosError(error, "Error al actualizar el producto");
+      handleAxiosError(error, "Error al listar productos por categoría");
+      return [];
     }
   }
 
-  //Metodo para actualizar productos sin imagen
-  async updateWithoutImage(product: Product): Promise<ResponseApiDelivery> {
+  //Metodo para crear producto
+  async create(product: Product, files: ImagePickerAsset[]): Promise<Response> {
     try {
-       const response = await ApiDelivery.put<ResponseApiDelivery>("/products/updateWithoutImage", product);
-      return Promise.resolve(response.data);
-      
+      const formData = this.buildFormData(product, files);
+      const response = await ApiDeliveryForImage.post<ResponseApiDelivery>(
+        "/products/create",
+        formData,
+      );
+      return ResponseApiMapper.toDomain(response.data);
     } catch (error) {
-       return handleAxiosError(error, "Error al actualizar el producto");
-      
+      const apiError = handleAxiosError(error, "Error al crear el producto");
+      return ResponseApiMapper.toDomain(apiError);
+    }
+  }
+
+  //Metodo para actualizar productos con imagen
+  async updateWithImage(
+    product: Product,
+    files: ImagePickerAsset[],
+  ): Promise<Response> {
+    try {
+      const formData = this.buildFormData(product, files);
+      const response = await ApiDeliveryForImage.put<ResponseApiDelivery>(
+        "/products/updateWithImage",
+        formData,
+      );
+      return ResponseApiMapper.toDomain(response.data);
+    } catch (error) {
+      const apiError = handleAxiosError(
+        error,
+        "Error al actualizar el producto",
+      );
+      return ResponseApiMapper.toDomain(apiError);
+    }
+  }
+
+  private buildFormData(product: Product, files: ImagePickerAsset[]): FormData {
+    const formData = new FormData();
+
+    files.forEach((file) => {
+      const uri = file.uri;
+      const name = uri.split("/").pop() ?? "image.jpg";
+      const type = mime.getType(uri) ?? "image/jpeg";
+
+      formData.append("image", {
+        uri,
+        name,
+        type,
+      } as any);
+    });
+
+    formData.append("product", JSON.stringify(product));
+    return formData;
+  }
+
+  //Metodo para actualizar productos sin imagen
+  async updateProduct(product: Product): Promise<Response> {
+    try {
+      const response = await ApiDelivery.put<ResponseApiDelivery>(
+        "/products/updateWithoutImage",
+        product,
+      );
+      return ResponseApiMapper.toDomain(response.data);
+    } catch (error) {
+      const apiError = handleAxiosError(
+        error,
+        "Error al actualizar el producto",
+      );
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 
   //Metodo para eliminar producto por categoria
-  async remove(product: Product): Promise<ResponseApiDelivery> {
+  async remove(product: Product): Promise<Response> {
     try {
-      const response = await ApiDelivery.delete<ResponseApiDelivery>(`/products/delete/${product.id}`);
-      return Promise.resolve(response.data);
-      
+      const response = await ApiDelivery.delete<ResponseApiDelivery>(
+        `/products/delete/${product.id}`,
+      );
+      return ResponseApiMapper.toDomain(response.data);
     } catch (error) {
-
-       return handleAxiosError(error, "Error al eliminar el producto");
-      
+      const apiError = handleAxiosError(error, "Error al eliminar el producto");
+      return ResponseApiMapper.toDomain(apiError);
     }
   }
 }

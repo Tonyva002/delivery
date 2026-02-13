@@ -1,5 +1,6 @@
 import React from "react";
-import { TouchableOpacity, View, Image, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { Image } from "expo-image";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
 import { MyColors } from "../../../../theme/AppTheme";
@@ -31,7 +32,15 @@ export default function CustomerCategoryItem({
       style={{ ...styles.container, height: height, width: width }}
     >
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: category.image }} />
+        <Image
+          style={styles.image}
+          source={{ uri: category.image }}
+          contentFit="cover"
+          transition={300}
+          cachePolicy={"memory-disk"}
+          placeholder={require("../../../../../../assets/placeholder.png")}
+        />
+
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{category.name}</Text>
         </View>

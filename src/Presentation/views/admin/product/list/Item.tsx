@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { Image } from "expo-image";
 import { MyColors } from "../../../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -24,7 +25,14 @@ export default function AdminProductListItem({
   return (
     <TouchableOpacity>
       <View style={styles.container}>
-        <Image style={styles.image} source={{ uri: product.image1 }} />
+        <Image
+                  style={styles.image}
+                  source={{ uri: product.image1 }}
+                  contentFit="cover"
+                  transition={300}
+                  cachePolicy={"memory-disk"}
+                  placeholder={require("../../../../../../assets/placeholder.png")}
+                />
 
         <View style={styles.info}>
           <Text style={styles.title}>{product.name}</Text>

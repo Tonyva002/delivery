@@ -2,9 +2,9 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Order } from "../../../Domain/entities/Order";
 import { OrderProvider } from "../../context/OrderContext";
-import DeliveryOrderListScreen from "../../views/delivery/order/list/OrderList";
-import DeliveryOrderDetailScreen from "../../views/delivery/order/detail/OrderDetail";
-import DeliveryOrderMapScreen from "../../views/delivery/order/map/OrderMap";
+import DeliveryOrderListScreen from "../../views/delivery/order/list/OrderListScreen";
+import DeliveryOrderDetailScreen from "../../views/delivery/order/detail/OrderDetailScreen";
+import DeliveryMapOrderScreen from "../../views/delivery/order/map/MapOrderScreen";
 
 export type DeliveryOrderStackParamList = {
   DeliveryOrderListScreen: undefined;
@@ -38,15 +38,13 @@ export default function DeliveryOrderStackNavigator() {
           }}
         />
 
-         <Stack.Screen
+        <Stack.Screen
           name="DeliveryOrderMapScreen"
-          component={DeliveryOrderMapScreen}
+          component={DeliveryMapOrderScreen}
           options={{
             headerShown: false,
-      
           }}
         />
-
       </Stack.Navigator>
     </OrderStatus>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AdminOrderListScreen from "../../views/admin/order/list/OrderList";
-import AdminOrderDetailScreen from "../../views/admin/order/detail/OrderDetail";
+import AdminOrderListScreen from "../../views/admin/order/list/OrderListScreen";
+import AdminOrderDetailsScreen from "../../views/admin/order/detail/OrderDetailsScreen";
 import { Order } from "../../../Domain/entities/Order";
 import { OrderProvider } from "../../context/OrderContext";
 
@@ -30,7 +30,7 @@ export default function AdminOrderStackNavigator() {
 
         <Stack.Screen
           name="AdminOrderDetailScreen"
-          component={AdminOrderDetailScreen}
+          component={AdminOrderDetailsScreen}
           options={{
             title: "Detalle de la orden",
           }}

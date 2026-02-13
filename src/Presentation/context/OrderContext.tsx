@@ -1,12 +1,13 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { ResponseApiDelivery } from "../../Data/sources/models/ResponseApiDelivery";
 import { Order } from "../../Domain/entities/Order";
-import GetByStatusOrderUseCase from "../../Domain/useCase/order/GetByStatusOrder";
-import UpdateToDispatchedOrderUseCase from "../../Domain/useCase/order/UpdateToDispatchedOrder";
-import GetByDeliveryAndStatusOrderUseCase from "../../Domain/useCase/order/GetByDeliveryAndStatusOrder";
-import UpdateByToOnTheWayOrder from "../../Domain/useCase/order/UpdateToOnTheWayOrder";
-import UpdateToOnTheWayOrderUseCase from "../../Domain/useCase/order/UpdateToOnTheWayOrder";
-import UpdateToDeliveredOrderUseCase from "../../Domain/useCase/order/UpdateToDeliveredOrder";
+import {
+  getByDeliveryAndStatusOrderUseCase,
+  getByStatusOrderUseCase,
+  updateToDeliveredOrderUseCase,
+  updateToDispatchedOrderUseCase,
+  updateToOnTheWayOrderUseCase,
+} from "../../core/di/OrderContainer";
 
 export interface OrderContextProps {
   ordersPayed: Order[];
@@ -14,7 +15,10 @@ export interface OrderContextProps {
   ordersOnTheWay: Order[];
   ordersDelivery: Order[];
   getOrdersByStatus(status: string): Promise<void>;
-  getOrdersByDeliveryAndStatus(id_delivery: string, status: string): Promise<void>;
+  getOrdersByDeliveryAndStatus(
+    id_delivery: string,
+    status: string,
+  ): Promise<void>;
   updateToDispatched(order: Order): Promise<ResponseApiDelivery>;
   updateToOnTheWay(order: Order): Promise<ResponseApiDelivery>;
   updateToDelivered(order: Order): Promise<ResponseApiDelivery>;
@@ -28,7 +32,7 @@ export const OrderProvider = ({ children }: any) => {
   const [ordersOnTheWay, setOrdersOnTheWay] = useState<Order[]>([]);
   const [ordersDelivery, setOrdersDelivery] = useState<Order[]>([]);
 
-    const updateOrdersList = (status: string, response: Order[]) => {
+  const updateOrdersList = (status: string, response: Order[]) => {
     switch (status) {
       case "PAGADO":
         setOrdersPayed(response);
@@ -45,22 +49,27 @@ export const OrderProvider = ({ children }: any) => {
     }
   };
 
-
   //Obtener las ordenes segun el status(PAGADO, DESPACHADO, EN CAMINO, ENTREGADO)
   const getOrdersByStatus = async (status: string) => {
-    const response = await GetByStatusOrderUseCase(status);
+    const response = await getByStatusOrderUseCase.execute(status);
     updateOrdersList(status, response);
   };
 
   //Metodo para obtener las ordenes asignada al delivery
-  const getOrdersByDeliveryAndStatus = async (id_delivery: string, status: string) => {
-    const response = await GetByDeliveryAndStatusOrderUseCase(id_delivery, status);
+  const getOrdersByDeliveryAndStatus = async (
+    id_delivery: string,
+    status: string,
+  ) => {
+    const response = await getByDeliveryAndStatusOrderUseCase.execute(
+      id_delivery,
+      status,
+    );
     updateOrdersList(status, response);
   };
 
   //Metodo para actualizar la orden a despachado
   const updateToDispatched = async (order: Order) => {
-    const response = await UpdateToDispatchedOrderUseCase(order);
+    const response = await updateToDispatchedOrderUseCase.execute(order);
     getOrdersByStatus("PAGADO");
     getOrdersByStatus("DESPACHADO");
     return response;
@@ -68,17 +77,17 @@ export const OrderProvider = ({ children }: any) => {
 
   //Metodo para actualizar la orden a despachado
   const updateToOnTheWay = async (order: Order) => {
-    const response = await UpdateToOnTheWayOrderUseCase(order);
-    getOrdersByDeliveryAndStatus(order.id_delivery!,"DESPACHADO");
-    getOrdersByDeliveryAndStatus(order.id_delivery!,"EN CAMINO");
+    const response = await updateToOnTheWayOrderUseCase.execute(order);
+    getOrdersByDeliveryAndStatus(order.id_delivery!, "DESPACHADO");
+    getOrdersByDeliveryAndStatus(order.id_delivery!, "EN CAMINO");
     return response;
   };
 
-    //Metodo para actualizar la orden a despachado
+  //Metodo para actualizar la orden a despachado
   const updateToDelivered = async (order: Order) => {
-    const response = await UpdateToDeliveredOrderUseCase(order);
-    getOrdersByDeliveryAndStatus(order.id_delivery!,"EN CAMINO");
-    getOrdersByDeliveryAndStatus(order.id_delivery!,"ENTREGADO");
+    const response = await updateToDeliveredOrderUseCase.execute(order);
+    getOrdersByDeliveryAndStatus(order.id_delivery!, "EN CAMINO");
+    getOrdersByDeliveryAndStatus(order.id_delivery!, "ENTREGADO");
     return response;
   };
 
@@ -93,7 +102,7 @@ export const OrderProvider = ({ children }: any) => {
         getOrdersByDeliveryAndStatus,
         updateToDispatched,
         updateToOnTheWay,
-        updateToDelivered
+        updateToDelivered,
       }}
     >
       {children}

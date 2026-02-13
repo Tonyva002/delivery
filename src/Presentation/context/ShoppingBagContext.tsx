@@ -1,7 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 import { Product } from "../../Domain/entities/Product";
-import GetShoppingBagLocalUseCase from "../../Domain/useCase/shoppingBagLocal/GetShoppingBagLocal";
-import { SaveShoppingBagLocalUseCase } from "../../Domain/useCase/shoppingBagLocal/SaveShoppingBagLocal";
+import {
+  getShoppingBagLocalUseCase,
+  saveShoppingBagLocalUseCase,
+} from "../../core/di/ShoppingBagContainer";
 
 export interface ShoppingBagContextProps {
   shoppingBag: Product[];
@@ -27,9 +29,8 @@ export const ShoppingBagProvider = ({ children }: any) => {
   }, [shoppingBag]);
 
   const getShoppingBag = async (): Promise<void> => {
-    const response = await GetShoppingBagLocalUseCase();
+    const response = await getShoppingBagLocalUseCase.execute();
     setShoppingBag(response);
-    
   };
 
   const getTotal = async (): Promise<void> => {
@@ -51,17 +52,15 @@ export const ShoppingBagProvider = ({ children }: any) => {
       shoppingBag[index].quantity = product.quantity;
     }
 
-    await SaveShoppingBagLocalUseCase(shoppingBag);
+    await saveShoppingBagLocalUseCase.execute(shoppingBag);
     getShoppingBag();
-  
   };
 
   const deleteItem = async (product: Product): Promise<void> => {
     const index = shoppingBag.findIndex((p) => p.id === product.id);
     shoppingBag.splice(index, 1);
-    await SaveShoppingBagLocalUseCase(shoppingBag);
+    await saveShoppingBagLocalUseCase.execute(shoppingBag);
     getShoppingBag();
-   
   };
 
   return (

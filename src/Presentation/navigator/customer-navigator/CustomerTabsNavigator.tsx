@@ -1,7 +1,7 @@
 import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfo";
-import CustomerOrderListScreen from "../../views/customer/order/list/OrderList";
+import { ProfileInfoScreen } from "../../views/profile/info/ProfileInfoScreen";
+import CustomerOrderListScreen from "../../views/customer/order/list/OrderListScreen";
 import { CustomerStackNavigator } from "./CustomerStackNavigator";
 
 const Tab = createBottomTabNavigator();

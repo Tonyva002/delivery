@@ -1,11 +1,12 @@
-import { ResponseApiDelivery } from "../../Data/sources/models/ResponseApiDelivery";
 import { User } from "../entities/User";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
+import { Response } from "../models/Response";
 
 export interface UserRepository {
-        
-        getDelivery(): Promise<User[]>;
-        updateWithoutImage(user: User): Promise<ResponseApiDelivery>;
-        updateWithImage(user: User, file: ImagePicker.ImagePickerAsset): Promise<ResponseApiDelivery>;
-
+  getDelivery(): Promise<User[]>;
+  updateUser(user: User): Promise<Response>;
+  updateUserWithImage(
+    user: User,
+    file: ImagePicker.ImagePickerAsset,
+  ): Promise<Response>;
 }
