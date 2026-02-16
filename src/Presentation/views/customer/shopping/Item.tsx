@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Product } from "../../../../Domain/entities/Product";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { MyColors } from "../../../theme/AppTheme";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image } from "expo-image";
+import { MyColors, MyStyles } from "../../../theme/AppTheme";
 
 interface Props {
   product: Product;
@@ -16,10 +17,28 @@ export default function ShoppingBagItem({
   subtractItem,
   deleteItem,
 }: Props) {
+
+  const [loading, setLoading] = useState(true)
+
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: product.image1 }} />
+      <View style={styles.imageWrapper}>
+       {loading && 
+        <ActivityIndicator 
+        size="large"
+        color={MyColors.primary}
+        style={MyStyles.loading}
+        />
+       }
+        <Image 
+        style={styles.image} 
+        recyclingKey={product.id?.toString()}
+        source={{ uri: product.image1 }}
+        contentFit="cover"
+        transition={500}
+        cachePolicy={"memory-disk"}
+        onLoadEnd={() => {setLoading(false)}}
+         />
       </View>
       <View style={styles.productInfo}>
         <View style={{ flexDirection: "row" }}>
@@ -70,8 +89,6 @@ const styles = StyleSheet.create({
     marginTop: 7,
     alignItems: "center",
   },
-
-  imageContainer: {},
 
   image: {
     width: 62,
@@ -139,5 +156,11 @@ const styles = StyleSheet.create({
     width: 25,
     height: 22,
     marginTop: 5,
+  },
+
+  imageWrapper: {
+    width: 62,
+    height: 62,
+    position: "relative"
   },
 });

@@ -1,8 +1,8 @@
-import { View, TextInput, KeyboardType, StyleSheet, Image } from "react-native";
+import { View, TextInput, KeyboardType, StyleSheet, Image, ImageSourcePropType } from "react-native";
 import React from "react";
 
 interface Props {
-  image: any;
+  image: ImageSourcePropType;
   placeholder: string;
   value: string;
   keyboardtype: KeyboardType;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function CustomTextInput({
-  image: image,
+  image,
   placeholder,
   value,
   keyboardtype,

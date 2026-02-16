@@ -1,8 +1,10 @@
-import { CategoryRepositoryImp } from "../../../Data/repositories/CategoryRepository";
 import { Category } from "../../entities/Category";
+import { CategoryRepository } from "../../repositories/CategoryRepository";
 
-const { updateWithoutImage } = new CategoryRepositoryImp();
+export class UpdateCategoryUseCase {
+  constructor(private categoryRepository: CategoryRepository) {}
 
-export const UpdateCategoryUseCase = async (category: Category) => {
-  return await updateWithoutImage(category);
-};
+  execute(category: Category) {
+    return this.categoryRepository.updateCategory(category);
+  }
+}

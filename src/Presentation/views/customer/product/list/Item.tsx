@@ -1,6 +1,7 @@
-import React from "react";
-import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
-import { MyColors } from "../../../../theme/AppTheme";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { Image } from "expo-image";
+import { MyColors, MyStyles } from "../../../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Product } from "../../../../../Domain/entities/Product";
 import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
@@ -14,6 +15,9 @@ interface Props {
 }
 
 export default function CustomerProductItem({ product, navigation }: Props) {
+
+  const [loading, setLoading] = useState(true);
+
   return (
     <TouchableOpacity
       onPress={() =>
@@ -26,8 +30,24 @@ export default function CustomerProductItem({ product, navigation }: Props) {
           <Text style={styles.description}>{product.description}</Text>
           <Text style={styles.price}>RD$ {product.price}</Text>
         </View>
-
-        <Image style={styles.image} source={{ uri: product.image1 }} />
+         {/* Imagen + loader */}
+         <View style={styles.imageWrapper}>
+         {loading &&
+         <ActivityIndicator
+         size='large'
+         color={MyColors.primary}
+         style={MyStyles.loading}
+          />
+         }
+        <Image 
+        style={styles.image}
+        recyclingKey={product.id?.toString()} 
+        source={{ uri: product.image1 }}
+        contentFit="cover"
+        transition={500}
+        cachePolicy={"memory-disk"}
+        onLoadEnd={() => {setLoading(false)}} />
+        </View>
       </View>
 
       <View style={styles.divide}></View>
@@ -87,4 +107,10 @@ const styles = StyleSheet.create({
     backgroundColor: MyColors.grayVeryLight,
     marginHorizontal: 20,
   },
+
+  imageWrapper: {
+    width: 60,
+    height: 60,
+    position: "relative"
+  }
 });

@@ -1,11 +1,11 @@
-import { CategoryRepositoryImp } from '../../../Data/repositories/CategoryRepository'
-import { Category } from '../../entities/Category';
-import { ImagePickerAsset } from 'expo-image-picker';
+import { Category } from "../../entities/Category";
+import { ImagePickerAsset } from "expo-image-picker";
+import { CategoryRepository } from "../../repositories/CategoryRepository";
 
-const {create} = new CategoryRepositoryImp();
+export class CreateCategoryUseCase {
+  constructor(private categoryRepository: CategoryRepository) {}
 
-
-export const CreateCategoryUseCase = async (category: Category, file: ImagePickerAsset) => {
-  return  await  create(category, file);
-  
+  execute(category: Category, file: ImagePickerAsset) {
+    return this.categoryRepository.create(category, file);
+  }
 }

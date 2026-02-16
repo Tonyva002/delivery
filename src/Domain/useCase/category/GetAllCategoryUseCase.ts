@@ -1,11 +1,9 @@
-import { CategoryRepositoryImp } from "../../../Data/repositories/CategoryRepository";
-import { Category } from "../../entities/Category";
+import { CategoryRepository } from "../../repositories/CategoryRepository";
 
+export class GetAllCategoryUseCase {
+  constructor(private categoryRepository: CategoryRepository) {}
 
-const {getAll} = new CategoryRepositoryImp();
-
-export const GetAllCategoryUseCase = async () => {
-
-        return await getAll();
-
+  execute() {
+    return this.categoryRepository.getAll();
+  }
 }

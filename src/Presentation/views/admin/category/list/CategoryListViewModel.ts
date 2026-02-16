@@ -9,7 +9,9 @@ export default function useAdminCategoryListViewModel() {
   const deleteCategory = async (id: string) => {
     const response = await remove(id);
     setResponseMessage(response.message);
+  
   };
+  
   return {
     categories,
     responseMessage,

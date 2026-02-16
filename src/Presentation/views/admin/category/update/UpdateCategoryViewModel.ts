@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import {pickImageUtil } from "../../../../../utils/pickImageUtil";
 import {takePhotoUtil } from "../../../../../utils/takePhotoUtil";
 import { Category } from "../../../../../Domain/entities/Category";
-import { ResponseApiDelivery } from "../../../../../Data/sources/models/ResponseApiDelivery";
 import { CategoryContext } from "../../../../context/CategoryContext";
+import { Response } from "../../../../../Domain/models/Response";
 
 export default function useAdminUpdateCategoryViewModel(category: Category) {
   const [file, setfile] = useState<ImagePicker.ImagePickerAsset>();
@@ -33,7 +33,7 @@ export default function useAdminUpdateCategoryViewModel(category: Category) {
   // Metodo para actualizar una categoria
   const updateCategory = async () => {
     setLoading(true);
-    let response = {} as ResponseApiDelivery;
+    let response = {} as Response;
     if(values.image?.includes("https://")){
      response = await updateWithoutImage(values);
 

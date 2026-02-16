@@ -1,14 +1,15 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Dimensions,
-  Image,
   StatusBar,
   Text,
   ToastAndroid,
   TouchableOpacity,
   View,
 } from "react-native";
+import { Image } from "expo-image";
 import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
@@ -17,6 +18,7 @@ import useCustomerProductDetailViewModel from "./ProductDetailViewModel";
 import styles from "./Styles";
 import RoundedButton from "../../../../components/RoundedButton";
 import { useFocusEffect } from "@react-navigation/native";
+import { MyColors, MyStyles } from "../../../../theme/AppTheme";
 
 interface Props extends NativeStackScreenProps<
   ClientStackParamList,
@@ -32,13 +34,17 @@ export default function CustomerProductDetailScreen({
     productImages,
     quantity,
     total,
-    shoppingBag,
     responseMessage,
     setResponseMessage,
     addToBag,
     addItem,
     subtractItem,
   } = useCustomerProductDetailViewModel(product);
+
+  const [imagesLoaded, setImagesLoaded] = useState(0);
+
+  const allImagesLoaded =
+    productImages.length > 0 && imagesLoaded === productImages.length;
 
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
@@ -54,6 +60,10 @@ export default function CustomerProductDetailScreen({
     }, []),
   );
 
+  useEffect(() => {
+    setImagesLoaded(0);
+  }, [productImages]);
+
   //Manejo de mensajes
   useEffect(() => {
     if (responseMessage) {
@@ -65,6 +75,13 @@ export default function CustomerProductDetailScreen({
   return (
     <View style={styles.container}>
       <GestureHandlerRootView>
+        {productImages.length > 0 && !allImagesLoaded && (
+          <ActivityIndicator
+            size="large"
+            color={MyColors.primary}
+            style={MyStyles.loading}
+          />
+        )}
         <Carousel
           ref={ref}
           width={width}
@@ -75,7 +92,18 @@ export default function CustomerProductDetailScreen({
           data={productImages}
           onProgressChange={progress}
           renderItem={({ item }) => (
-            <Image source={{ uri: item }} style={styles.productImage} />
+            <Image
+              source={{ uri: item }}
+              style={styles.productImage}
+              contentFit="cover"
+              transition={500}
+              cachePolicy={"memory-disk"}
+              onLoadEnd={() => {
+                setImagesLoaded((prev) =>
+                  prev < productImages.length ? prev + 1 : prev,
+                );
+              }}
+            />
           )}
         />
       </GestureHandlerRootView>

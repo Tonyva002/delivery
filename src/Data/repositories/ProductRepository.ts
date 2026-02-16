@@ -44,7 +44,7 @@ export class ProductRepositoryImp implements ProductRepository {
   }
 
   //Metodo para actualizar productos con imagen
-  async updateWithImage(
+  async updateProductWithImage(
     product: Product,
     files: ImagePickerAsset[],
   ): Promise<Response> {

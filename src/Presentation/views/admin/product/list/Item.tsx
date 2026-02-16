@@ -1,7 +1,7 @@
-import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Image } from "expo-image";
-import { MyColors } from "../../../../theme/AppTheme";
+import { MyColors, MyStyles } from "../../../../theme/AppTheme";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { Product } from "../../../../../Domain/entities/Product";
@@ -22,17 +22,30 @@ export default function AdminProductListItem({
   const navigation =
     useNavigation<NativeStackNavigationProp<ProductStackParamList>>();
 
+    const [loading, setLoading] = useState(true)
+
   return (
     <TouchableOpacity>
       <View style={styles.container}>
+        {/* Imagen + loader */}
+        <View style={styles.imageWrapper}>
+          {loading && 
+          <ActivityIndicator
+          style={MyStyles.loading}
+          size="large"
+          color={MyColors.primary}
+           />
+          }
         <Image
                   style={styles.image}
+                  recyclingKey={product.id?.toString()}
                   source={{ uri: product.image1 }}
                   contentFit="cover"
-                  transition={300}
+                  transition={500}
                   cachePolicy={"memory-disk"}
-                  placeholder={require("../../../../../../assets/placeholder.png")}
+                  onLoadEnd={() => {setLoading(false)}}
                 />
+                </View>
 
         <View style={styles.info}>
           <Text style={styles.title}>{product.name}</Text>
@@ -121,4 +134,9 @@ const styles = StyleSheet.create({
     backgroundColor: MyColors.grayVeryLight,
     marginHorizontal: 20,
   },
+  imageWrapper: {
+    width: 60,
+    height: 60,
+    position: "relative"
+  }
 });

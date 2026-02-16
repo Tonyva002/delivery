@@ -4,7 +4,7 @@ import { Response } from "../models/Response";
 export interface ProductRepository {
   create(product: Product, files: ImagePickerAsset[]): Promise<Response>;
   getProductByCategory(id_category: string): Promise<Product[]>;
-  updateWithImage(
+  updateProductWithImage(
     product: Product,
     files: ImagePickerAsset[],
   ): Promise<Response>;

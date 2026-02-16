@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { ResponseApiDelivery } from "../../Data/sources/models/ResponseApiDelivery";
 import { Order } from "../../Domain/entities/Order";
 import {
   getByDeliveryAndStatusOrderUseCase,
@@ -8,6 +7,7 @@ import {
   updateToDispatchedOrderUseCase,
   updateToOnTheWayOrderUseCase,
 } from "../../core/di/OrderContainer";
+import { Response } from "../../Domain/models/Response";
 
 export interface OrderContextProps {
   ordersPayed: Order[];
@@ -19,9 +19,9 @@ export interface OrderContextProps {
     id_delivery: string,
     status: string,
   ): Promise<void>;
-  updateToDispatched(order: Order): Promise<ResponseApiDelivery>;
-  updateToOnTheWay(order: Order): Promise<ResponseApiDelivery>;
-  updateToDelivered(order: Order): Promise<ResponseApiDelivery>;
+  updateToDispatched(order: Order): Promise<Response>;
+  updateToOnTheWay(order: Order): Promise<Response>;
+  updateToDelivered(order: Order): Promise<Response>;
 }
 
 export const OrderContext = createContext({} as OrderContextProps);

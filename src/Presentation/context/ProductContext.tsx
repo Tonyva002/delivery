@@ -1,6 +1,5 @@
 import { ImagePickerAsset } from "expo-image-picker";
 import { Product } from "../../Domain/entities/Product";
-import { ResponseApiDelivery } from "../../Data/sources/models/ResponseApiDelivery";
 import { createContext, useState } from "react";
 import {
   createProductUseCase,
@@ -9,6 +8,7 @@ import {
   updateProductUseCase,
   updateProductWithImageUseCase,
 } from "../../core/di/ProductContainer";
+import { Response } from "../../Domain/models/Response";
 
 export interface ProductContextProps {
   products: Product[];
@@ -16,13 +16,13 @@ export interface ProductContextProps {
   create(
     product: Product,
     files: ImagePickerAsset[],
-  ): Promise<ResponseApiDelivery>;
+  ): Promise<Response>;
   updateWithImage(
     product: Product,
     files: ImagePickerAsset[],
-  ): Promise<ResponseApiDelivery>;
-  updateWithoutImage(product: Product): Promise<ResponseApiDelivery>;
-  remove(product: Product): Promise<ResponseApiDelivery>;
+  ): Promise<Response>;
+  updateWithoutImage(product: Product): Promise<Response>;
+  remove(product: Product): Promise<Response>;
 }
 export const ProductContext = createContext({} as ProductContextProps);
 
@@ -37,7 +37,7 @@ export const ProductProvider = ({ children }: any) => {
   const create = async (
     product: Product,
     files: ImagePickerAsset[],
-  ): Promise<ResponseApiDelivery> => {
+  ): Promise<Response> => {
     const response = await createProductUseCase.execute(product, files);
     getProducts(product.id_category!);
     return response;
@@ -47,7 +47,7 @@ export const ProductProvider = ({ children }: any) => {
   const updateWithImage = async (
     product: Product,
     files: ImagePickerAsset[],
-  ): Promise<ResponseApiDelivery> => {
+  ): Promise<Response> => {
     const response = await updateProductWithImageUseCase.execute(
       product,
       files,
@@ -59,13 +59,13 @@ export const ProductProvider = ({ children }: any) => {
   //Metodo para actualizar sin imagen
   const updateWithoutImage = async (
     product: Product,
-  ): Promise<ResponseApiDelivery> => {
+  ): Promise<Response> => {
     const response = await updateProductUseCase.execute(product);
     getProducts(product.id_category!);
     return response;
   };
 
-  const remove = async (product: Product): Promise<ResponseApiDelivery> => {
+  const remove = async (product: Product): Promise<Response> => {
     const response = await deleteProductUseCase.execute(product);
     getProducts(product.id_category!);
     return response;

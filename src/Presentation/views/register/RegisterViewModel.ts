@@ -26,7 +26,7 @@ export default function useRegisterViewModel() {
   };
 
   const pickImage = async () => {
-    await pickImageUtil({ onChange, setFile: setfile });
+    await pickImageUtil({onChange, setFile: setfile });
   };
 
   const takePhoto = async () => {

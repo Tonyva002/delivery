@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as Location from "expo-location";
 import MapView, { Camera } from "react-native-maps";
 import { useAddress } from "../../../../context/AddressContext";

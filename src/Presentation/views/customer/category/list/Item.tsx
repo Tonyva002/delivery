@@ -1,9 +1,15 @@
-import React from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { Image } from "expo-image";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ClientStackParamList } from "../../../../navigator/customer-navigator/CustomerStackNavigator";
-import { MyColors } from "../../../../theme/AppTheme";
+import { MyColors, MyStyles } from "../../../../theme/AppTheme";
 import { Category } from "../../../../../Domain/entities/Category";
 
 interface Props {
@@ -22,6 +28,8 @@ export default function CustomerCategoryItem({
   width,
   navigation,
 }: Props) {
+  const [loading, setLoading] = useState(true);
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -32,14 +40,25 @@ export default function CustomerCategoryItem({
       style={{ ...styles.container, height: height, width: width }}
     >
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={{ uri: category.image }}
-          contentFit="cover"
-          transition={300}
-          cachePolicy={"memory-disk"}
-          placeholder={require("../../../../../../assets/placeholder.png")}
-        />
+        {/* Imagen + loader */}
+        <View style={styles.imageWrapper}>
+          {loading && (
+            <ActivityIndicator
+              style={MyStyles.loading}
+              size="large"
+              color={MyColors.primary}
+            />
+          )}
+          <Image
+            style={styles.image}
+            recyclingKey={category.id?.toString()}
+            source={{ uri: category.image }}
+            contentFit="cover"
+            transition={500}
+            cachePolicy={"memory-disk"}
+            onLoadEnd={() => setLoading(false)}
+          />
+        </View>
 
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{category.name}</Text>
@@ -87,5 +106,9 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  imageWrapper: {
+    flex: 1,
+    position: "relative",
   },
 });

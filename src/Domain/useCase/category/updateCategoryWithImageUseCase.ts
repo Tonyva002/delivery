@@ -1,11 +1,13 @@
-import { CategoryRepositoryImp } from '../../../Data/repositories/CategoryRepository'
-import { Category } from '../../entities/Category';
-import { ImagePickerAsset } from 'expo-image-picker';
+import { Category } from "../../entities/Category";
+import { ImagePickerAsset } from "expo-image-picker";
+import { CategoryRepository } from '../../repositories/CategoryRepository';
 
-const {updateWithImage} = new CategoryRepositoryImp();
+;
 
+export class UpdateCategoryWithImageUseCase {
+  constructor(private categoryRepository: CategoryRepository){}
 
-export const UpdateCategoryWithImageUseCase = async (category: Category, file: ImagePickerAsset) => {
-  return  await  updateWithImage(category, file);
-  
-}
+  execute(category: Category, file: ImagePickerAsset){
+    return this.categoryRepository.updateCategoryWithImage(category, file)
+  }
+};

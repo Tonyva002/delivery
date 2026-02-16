@@ -1,12 +1,8 @@
 import { ImagePickerAsset } from "expo-image-picker";
 import { Category } from "../../Domain/entities/Category";
-import { ResponseApiDelivery } from "../../Data/sources/models/ResponseApiDelivery";
 import { createContext, useEffect, useState } from "react";
-import { GetAllCategoryUseCase } from "../../Domain/useCase/category/GetAllCategoryUseCase";
-import { CreateCategoryUseCase } from "../../Domain/useCase/category/CreateCategoryUseCase";
-import { UpdateCategoryUseCase } from "../../Domain/useCase/category/updateCategoryUseCase";
-import { UpdateCategoryWithImageUseCase } from "../../Domain/useCase/category/updateCategoryWithImageUseCase";
-import { DeleteCategoryUseCase } from "../../Domain/useCase/category/DeleteCategoryUseCase";
+import { createCategoryUseCase, deleteCategoryUseCase, getAllCategoryUseCase, updateCategoryUseCase, updateCategoryWithImageUseCase } from "../../core/di/CategoryContainer";
+import { Response } from "../../Domain/models/Response";
 
 export interface CategoryContextProps {
   categories: Category[];
@@ -14,13 +10,13 @@ export interface CategoryContextProps {
   create(
     category: Category,
     file: ImagePickerAsset,
-  ): Promise<ResponseApiDelivery>;
+  ): Promise<Response>;
   updateWithImage(
     category: Category,
     file: ImagePickerAsset,
-  ): Promise<ResponseApiDelivery>;
-  updateWithoutImage(category: Category): Promise<ResponseApiDelivery>;
-  remove(id: string): Promise<ResponseApiDelivery>;
+  ): Promise<Response>;
+  updateWithoutImage(category: Category): Promise<Response>;
+  remove(id: string): Promise<Response>;
 }
 
 export const CategoryContext = createContext({} as CategoryContextProps);
@@ -36,7 +32,7 @@ export const CategoryProvider = ({ children }: any) => {
 
   //Metodo para obtener categorias
   const getCategories = async (): Promise<void> => {
-    const response = await GetAllCategoryUseCase();
+    const response = await getAllCategoryUseCase.execute();
     setCategories(response);
   };
 
@@ -44,8 +40,8 @@ export const CategoryProvider = ({ children }: any) => {
   const create = async (
     category: Category,
     file: ImagePickerAsset,
-  ): Promise<ResponseApiDelivery> => {
-    const response = await CreateCategoryUseCase(category, file);
+  ): Promise<Response> => {
+    const response = await createCategoryUseCase.execute(category, file);
     getCategories();
     return response;
   };
@@ -54,8 +50,8 @@ export const CategoryProvider = ({ children }: any) => {
   const updateWithImage = async (
     category: Category,
     file: ImagePickerAsset,
-  ): Promise<ResponseApiDelivery> => {
-    const response = await UpdateCategoryWithImageUseCase(category, file);
+  ): Promise<Response> => {
+    const response = await updateCategoryWithImageUseCase.execute(category, file);
     getCategories();
     return response;
   };
@@ -63,15 +59,15 @@ export const CategoryProvider = ({ children }: any) => {
   //Metodo para actualizar sin imagen
   const updateWithoutImage = async (
     category: Category,
-  ): Promise<ResponseApiDelivery> => {
-    const response = await UpdateCategoryUseCase(category);
+  ): Promise<Response> => {
+    const response = await updateCategoryUseCase.execute(category);
     getCategories();
     return response;
   };
 
   //Metodo para eliminar categoria
-  const remove = async (id: string): Promise<ResponseApiDelivery> => {
-    const response = await DeleteCategoryUseCase(id);
+  const remove = async (id: string): Promise<Response> => {
+    const response = await deleteCategoryUseCase.execute(id);
     getCategories();
     return response;
   };
