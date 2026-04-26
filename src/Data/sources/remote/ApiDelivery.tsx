@@ -1,17 +1,18 @@
-import axios, { AxiosHeaders } from "axios";
+import axios from "axios";
 import { LocalStorage } from "../local/LocalStorage";
 import { User } from "../../../Domain/entities/User";
 
 const ApiDelivery = axios.create({
-  baseURL: "http://10.0.0.4:3000/api",
+   baseURL: "http://10.0.0.4:3000/api",
+ // baseURL: "http://10.0.0.4:4000/api/v1",
   headers: {
     "content-type": "application/json",
   },
 });
 
-
 const ApiDeliveryForImage = axios.create({
   baseURL: "http://10.0.0.4:3000/api",
+ // baseURL: "http://10.0.0.4:4000/api/v1",
   headers: {
     "Content-type": "multipart/form-data",
     accept: "application/json",
@@ -29,6 +30,5 @@ const authInterceptor = async (config: any) => {
 
 ApiDelivery.interceptors.request.use(authInterceptor);
 ApiDeliveryForImage.interceptors.request.use(authInterceptor);
-
 
 export { ApiDelivery, ApiDeliveryForImage };

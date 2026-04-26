@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import { Image } from "expo-image";
 import { Rol } from "../../../Domain/entities/Rol";
 import { MyColors, MyStyles } from "../../theme/AppTheme";
@@ -14,17 +20,16 @@ interface Props {
 }
 
 export default function RolesItem({ rol, height, width, navigation }: Props) {
-
   const [loading, setLoading] = useState(true);
 
   return (
     <TouchableOpacity
       onPress={() => {
-        if (rol.name == "ADMIN") {
+        if (rol.name === "ADMIN") {
           navigation.replace("AdminTabsNavigator");
-        } else if (rol.name == "CUSTOMER") {
+        } else if (rol.name === "CUSTOMER") {
           navigation.replace("CustomerTabsNavigator");
-        } else if (rol.name == "DELIVERY") {
+        } else if (rol.name === "DELIVERY") {
           navigation.replace("DeliveryTabsNavigator");
         }
       }}
@@ -32,21 +37,24 @@ export default function RolesItem({ rol, height, width, navigation }: Props) {
     >
       <View style={styles.imageContainer}>
         {/* Imagen + loader */}
-        {loading &&
-        <ActivityIndicator 
-        size="large"
-        color={MyColors.primary}
-        style={MyStyles.loading}
+        {loading && (
+          <ActivityIndicator
+            size="large"
+            color={MyColors.primary}
+            style={MyStyles.loading}
+          />
+        )}
+        <Image
+          style={styles.image}
+          recyclingKey={rol.id?.toString()}
+          source={{ uri: rol.image }}
+          contentFit="cover"
+          transition={500}
+          cachePolicy={"memory-disk"}
+          onLoadEnd={() => {
+            setLoading(false);
+          }}
         />
-        }
-        <Image 
-        style={styles.image}
-        recyclingKey={rol.id?.toString()} 
-        source={{ uri: rol.image }}
-        contentFit="cover"
-        transition={500}
-        cachePolicy={"memory-disk"}
-        onLoadEnd={() => {setLoading(false)}} />
 
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{rol.name}</Text>
@@ -57,11 +65,6 @@ export default function RolesItem({ rol, height, width, navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    resizeMode: "contain",
-  },
-
   container: {
     alignSelf: "center",
     paddingBottom: 20,
@@ -73,6 +76,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 18,
   },
+
+  image: {
+    flex: 1,
+    resizeMode: "contain",
+  },
+
   title: {
     color: "white",
   },

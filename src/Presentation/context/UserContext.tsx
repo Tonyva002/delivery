@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useMemo, useCallback } from "react";
 import { User } from "../../Domain/entities/User";
 import {
   getUserLocalUseCase,
@@ -31,39 +31,34 @@ export const UserContext = createContext({} as UserContextProps);
 export const UserProvider = ({ children }: any) => {
   const [user, setUser] = useState<User>(userInitialState);
 
-  useEffect(() => {
-    getUserSesion();
+  const getUserSesion = useCallback(async () => {
+    const user = await getUserLocalUseCase.execute();
+    setUser(user ?? userInitialState);
   }, []);
 
-  const getUserSesion = async () => {
-    const user = await getUserLocalUseCase.execute();
-
-    if (user) {
-      setUser(user);
-    } else {
-      setUser(userInitialState);
-    }
-  };
-
-  const saveUserSesion = async (user: User) => {
+  const saveUserSesion = useCallback(async (user: User) => {
     await saveUserLocalUseCase.execute(user);
     setUser(user);
-  };
+  }, []);
 
-  const removeUserSesion = async () => {
+  const removeUserSesion = useCallback(async () => {
     await removeUserLocalUseCase.execute();
     setUser(userInitialState);
-  };
+  }, []);
+
+  useEffect(() => {
+    getUserSesion();
+  }, [getUserSesion]);
+
+  const value = useMemo(() => ({
+    user,
+    saveUserSesion,
+    getUserSesion,
+    removeUserSesion,
+  }), [user, saveUserSesion, getUserSesion, removeUserSesion]);
 
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        saveUserSesion,
-        getUserSesion,
-        removeUserSesion,
-      }}
-    >
+    <UserContext.Provider value={value}>
       {children}
     </UserContext.Provider>
   );

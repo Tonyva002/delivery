@@ -1,27 +1,35 @@
 import { View, TextInput, KeyboardType, StyleSheet, Image, ImageSourcePropType } from "react-native";
-import React from "react";
+import React, { useCallback } from "react";
 
 interface Props {
   image: ImageSourcePropType;
   placeholder: string;
   value: string;
-  keyboardtype: KeyboardType;
+  keyboardType: KeyboardType;
   secureTextEntry?: boolean;
   property: string;
   editable?: boolean;
   onChangeText: (property: string, value: any) => void;
 }
 
-export default function CustomTextInput({
+function CustomTextInput({
   image,
   placeholder,
   value,
-  keyboardtype,
+  keyboardType,
   secureTextEntry,
   property,
   editable = true,
   onChangeText,
 }: Props) {
+
+  const handleChange = useCallback(
+    (text: string) => {
+      onChangeText(property, text);
+    },
+    [property, onChangeText]
+  );
+
   return (
     <View style={styles.formView}>
       <Image style={styles.formImage} source={image} />
@@ -29,14 +37,16 @@ export default function CustomTextInput({
         style={styles.formTextInput}
         placeholder={placeholder}
         value={value}
-        keyboardType={keyboardtype}
+        keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
-        onChangeText={(text) => onChangeText(property, text)}
+        onChangeText={handleChange}
         editable={editable}
       />
     </View>
   );
 }
+
+export default React.memo(CustomTextInput);
 
 const styles = StyleSheet.create({
   formView: {

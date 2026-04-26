@@ -6,6 +6,7 @@ import {
   ToastAndroid,
   StatusBar,
   ScrollView,
+  Alert
 } from "react-native";
 import React, { useEffect } from "react";
 import LoginStyles from "./Styles";
@@ -15,6 +16,7 @@ import RoundedButton from "../../components/RoundedButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParamList } from "../../navigator/main-navigator/MainStackNavigator";
 import { useFocusEffect } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 type LoginScreenProps = {
   navigation: NativeStackNavigationProp<StackParamList, "LoginScreen">;
@@ -31,6 +33,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     user,
   } = useLoginViewModel();
 
+
   useFocusEffect(
     React.useCallback(() => {
       StatusBar.setBarStyle("light-content");
@@ -40,17 +43,24 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   );
 
   useEffect(() => {
-    if (!user?.id) return;
-    if (user.roles?.length! > 1) {
-      navigation.replace("RolesScreen");
-    } else {
-      navigation.replace("CustomerTabsNavigator");
-    }
-  }, [user]);
+  if (!user?.id) return;
 
+  if ((user.roles?.length ?? 0) > 1) {
+    navigation.replace("RolesScreen");
+  } else {
+    navigation.replace("CustomerTabsNavigator");
+  }
+}, [user?.id, user?.roles]);
+
+ // Mensaje de error
   useEffect(() => {
     if (errorMessage !== "") {
-      ToastAndroid.show(errorMessage, ToastAndroid.LONG);
+      Toast.show({
+        type: "error",
+        text1: "Error al loguearse",
+        text2: errorMessage,
+        position: "bottom"
+      })
       setErrorMessage("");
     }
   }, [errorMessage]);
@@ -73,14 +83,14 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
       {/*Formulario*/}
       <View style={LoginStyles.formContainer}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={LoginStyles.formTitle}>INGRESAR</Text>
 
         <CustomTextInput
           image={require("../../../../assets/email.png")}
           placeholder="Email"
           value={email}
-          keyboardtype="email-address"
+          keyboardType="email-address"
           property="email"
           onChangeText={onChange}
         />
@@ -89,12 +99,12 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           image={require("../../../../assets/password.png")}
           placeholder="Password"
           value={password}
-          keyboardtype="default"
+          keyboardType="default"
           property="password"
           secureTextEntry={true}
           onChangeText={onChange}
         />
-        {/*Loguearse */}
+        {/*Boton para loguearse */}
         <View style={{ marginTop: 40 }}>
           <RoundedButton text="LOGIN" onPress={() => login()} />
         </View>

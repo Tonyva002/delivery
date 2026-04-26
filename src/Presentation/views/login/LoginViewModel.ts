@@ -1,50 +1,63 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import { loginAuthUseCase } from "../../../core/di/AuthContainer";
 import { UserContext } from "../../context/UserContext";
 
+type FormValues = {
+  email: string;
+  password: string;
+};
+
 export default function useLoginViewModel() {
   const [errorMessage, setErrorMessage] = useState("");
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<FormValues>({
     email: "",
     password: "",
   });
 
-  const { user, getUserSesion, saveUserSesion } = useContext(UserContext);
+  const { user, saveUserSesion } = useContext(UserContext);
 
-  const onChange = (property: string, value: any) => {
-    setValues({ ...values, [property]: value });
-  };
+  const onChange = useCallback((property: keyof FormValues, value: string) => {
+    setValues((prev) => ({
+      ...prev,
+      [property]: value,
+    }));
+  }, []);
 
-  const login = async () => {
-    if (!isValidForm()) return;
+  // Validacion del formulario
+  const isValidForm = useCallback((): string | null => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(values.email)) {
+      return "Invalid email";
+    }
+
+    if (!values.password.trim()) {
+      return "Enter a password";
+    }
+
+    return null;
+  }, [values]);
+
+  // Metodo para loguearse y guardar al usuario en sesion
+  const login = useCallback(async () => {
+    const error = isValidForm();
+
+    if (error) {
+      setErrorMessage(error);
+      return;
+    }
 
     const response = await loginAuthUseCase.execute(
       values.email,
       values.password,
     );
-    console.log("RESPONSE LOGIN: " + JSON.stringify(response, null, 3));
 
     if (!response.success) {
       setErrorMessage(response.message);
     } else {
       saveUserSesion(response.data);
-      getUserSesion();
     }
-  };
-
-  const isValidForm = (): boolean => {
-    if (values.email === "") {
-      setErrorMessage("Enter a email");
-      return false;
-    }
-
-    if (values.password === "") {
-      setErrorMessage("Enter a password");
-      return false;
-    }
-
-    return true;
-  };
+  }, [values, saveUserSesion, isValidForm]);
 
   return {
     ...values,
