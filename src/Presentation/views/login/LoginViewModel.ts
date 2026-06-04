@@ -16,12 +16,12 @@ export default function useLoginViewModel() {
 
   const { user, saveUserSesion } = useContext(UserContext);
 
-  const onChange = useCallback((property: keyof FormValues, value: string) => {
-    setValues((prev) => ({
-      ...prev,
-      [property]: value,
-    }));
-  }, []);
+  const onChange = useCallback((property: string, value: string) => {
+  setValues((prev) => ({
+    ...prev,
+    [property]: value,
+  }));
+}, []);
 
   // Validacion del formulario
   const isValidForm = useCallback((): string | null => {

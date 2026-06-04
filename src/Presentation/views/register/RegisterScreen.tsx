@@ -94,7 +94,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <CustomTextInput
             placeholder="Name"
-            keyboardtype="default"
+            keyboardType="default"
             image={require("../../../../assets/user.png")}
             property="name"
             onChangeText={onChange}
@@ -103,7 +103,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <CustomTextInput
             placeholder="Last Name"
-            keyboardtype="default"
+            keyboardType="default"
             image={require("../../../../assets/my_user.png")}
             property="lastname"
             onChangeText={onChange}
@@ -112,7 +112,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <CustomTextInput
             placeholder="Email"
-            keyboardtype="email-address"
+            keyboardType="email-address"
             image={require("../../../../assets/email.png")}
             property="email"
             onChangeText={onChange}
@@ -121,7 +121,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <CustomTextInput
             placeholder="Phone"
-            keyboardtype="numeric"
+            keyboardType="numeric"
             image={require("../../../../assets/phone.png")}
             property="phone"
             onChangeText={onChange}
@@ -130,7 +130,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <CustomTextInput
             placeholder="Password"
-            keyboardtype="default"
+            keyboardType="default"
             image={require("../../../../assets/password.png")}
             property="password"
             onChangeText={onChange}
@@ -140,7 +140,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
           <CustomTextInput
             placeholder="Confirm Password"
-            keyboardtype="default"
+            keyboardType="default"
             image={require("../../../../assets/confirm_password.png")}
             property="confirmPassword"
             onChangeText={onChange}

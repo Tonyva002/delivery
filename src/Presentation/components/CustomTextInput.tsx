@@ -1,11 +1,11 @@
-import { View, TextInput, KeyboardType, StyleSheet, Image, ImageSourcePropType } from "react-native";
+import { View, TextInput, KeyboardType, StyleSheet, Image, ImageSourcePropType, KeyboardTypeOptions } from "react-native";
 import React, { useCallback } from "react";
 
 interface Props {
   image: ImageSourcePropType;
   placeholder: string;
   value: string;
-  keyboardType: KeyboardType;
+  keyboardType: KeyboardTypeOptions;
   secureTextEntry?: boolean;
   property: string;
   editable?: boolean;

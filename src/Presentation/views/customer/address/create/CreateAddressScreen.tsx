@@ -92,7 +92,7 @@ export default function CustomerCreateAddressScreen({
           <CustomTextInput
             placeholder="Calle"
             image={require("../../../../../../assets/map.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="address"
             value={address}
             onChangeText={onChange}
@@ -101,7 +101,7 @@ export default function CustomerCreateAddressScreen({
           <CustomTextInput
             placeholder="Barrio / Urbanización"
             image={require("../../../../../../assets/neighborhood.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="neighborhood"
             value={neighborhood}
             onChangeText={onChange}
@@ -110,7 +110,7 @@ export default function CustomerCreateAddressScreen({
           <CustomTextInput
             placeholder="Código Postal"
             image={require("../../../../../../assets/code.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="zipcode"
             value={zipcode}
             onChangeText={onChange}
@@ -119,7 +119,7 @@ export default function CustomerCreateAddressScreen({
           <CustomTextInput
             placeholder="Ciudad"
             image={require("../../../../../../assets/location_city.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="city"
             value={city}
             onChangeText={onChange}
@@ -128,7 +128,7 @@ export default function CustomerCreateAddressScreen({
           <CustomTextInput
             placeholder="País"
             image={require("../../../../../../assets/flag.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="country"
             value={country}
             onChangeText={onChange}
@@ -140,7 +140,7 @@ export default function CustomerCreateAddressScreen({
             <CustomTextInput
               placeholder="Punto de referencia"
               image={require("../../../../../../assets/location.png")}
-              keyboardtype="default"
+              keyboardType="default"
               property="refPoint"
               value={refPoint}
               onChangeText={onChange}

@@ -80,7 +80,7 @@ export default function AdminCreateCategoryScreen() {
             <CustomTextInput
               placeholder="Nombre de la categoria"
               image={require("../../../../../../assets/categories.png")}
-              keyboardtype="default"
+              keyboardType="default"
               property="name"
               value={name}
               onChangeText={onChange}
@@ -89,7 +89,7 @@ export default function AdminCreateCategoryScreen() {
             <CustomTextInput
               placeholder="Descripción"
               image={require("../../../../../../assets/description.png")}
-              keyboardtype="default"
+              keyboardType="default"
               property="description"
               value={description}
               onChangeText={onChange}

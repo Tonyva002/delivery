@@ -116,7 +116,7 @@ export default function AdminCreateProductScreen({ navigation, route }: Props) {
           <CustomTextInput
             placeholder="Nombre del producto"
             image={require("../../../../../../assets/categories.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="name"
             value={name}
             onChangeText={onChange}
@@ -125,7 +125,7 @@ export default function AdminCreateProductScreen({ navigation, route }: Props) {
           <CustomTextInput
             placeholder="Descripcion"
             image={require("../../../../../../assets/description.png")}
-            keyboardtype="default"
+            keyboardType="default"
             property="description"
             value={description}
             onChangeText={onChange}
@@ -134,7 +134,7 @@ export default function AdminCreateProductScreen({ navigation, route }: Props) {
           <CustomTextInput
             placeholder="Precio"
             image={require("../../../../../../assets/price.png")}
-            keyboardtype="numeric"
+            keyboardType="numeric"
             property="price"
             value={price.toString()}
             onChangeText={onChange}

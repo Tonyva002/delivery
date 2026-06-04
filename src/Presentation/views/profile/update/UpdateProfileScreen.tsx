@@ -89,7 +89,7 @@ export default function UpdateProfileScreen({ navigation, route }: Props) {
 
           <CustomTextInput
             placeholder="Name"
-            keyboardtype="default"
+            keyboardType="default"
             image={require("../../../../../assets/user.png")}
             property="name"
             onChangeText={onChange}
@@ -98,7 +98,7 @@ export default function UpdateProfileScreen({ navigation, route }: Props) {
 
           <CustomTextInput
             placeholder="Last Name"
-            keyboardtype="default"
+            keyboardType="default"
             image={require("../../../../../assets/my_user.png")}
             property="lastname"
             onChangeText={onChange}
@@ -107,7 +107,7 @@ export default function UpdateProfileScreen({ navigation, route }: Props) {
 
           <CustomTextInput
             placeholder="Phone"
-            keyboardtype="numeric"
+            keyboardType="numeric"
             image={require("../../../../../assets/phone.png")}
             property="phone"
             onChangeText={onChange}
